@@ -1,4 +1,26 @@
 import type { Config } from "tailwindcss";
+import { PluginCreator } from "tailwindcss/types/config";
+
+type Plugin = {
+  addComponents: (value: Record<string, unknown>) => void;
+};
+
+const pluginCreator: PluginCreator = ({ addComponents }: Plugin) => {
+  addComponents({
+    ".container": {
+      maxWidth: "100%",
+      "@screen sm": {
+        maxWidth: "640px",
+      },
+      "@screen md": {
+        maxWidth: "768px",
+      },
+      "@screen lg": {
+        maxWidth: "90%",
+      },
+    },
+  });
+};
 
 const config: Config = {
   content: [
@@ -7,14 +29,14 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1rem",
+        lg: "2rem",
       },
     },
   },
-  plugins: [],
+  plugins: [pluginCreator],
 };
 export default config;
