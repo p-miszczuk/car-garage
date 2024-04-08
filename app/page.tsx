@@ -1,12 +1,12 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "My Page Title",
+  title: "Car Garage - home page",
 };
 
 export default function Home() {
   return (
-    <main className="container mx-auto">
+    <main className="w-100">
       <h1>Home Page</h1>
     </main>
   );
