@@ -1,0 +1,12 @@
+{
+  "home": {
+    "en": {
+      "header": "Welcome to",
+      "description": "The application allows you to freely manage several cars. It allows you to document completed repairs and update car-related expenses."
+    },
+    "pl": {
+      "header": "Witamy w ",
+      "description": "Aplikacja pozwala na swobodne zarządzanie kilkoma samochodmi. Pozwala dokumentować przebyte naprawy oraz aktualizować wydatki związane z samochodem."
+    }
+  }
+}

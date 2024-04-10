@@ -6,7 +6,9 @@ describe("Home page", () => {
   it("Render Home Page", () => {
     render(<Home />);
 
-    const heading = screen.getByRole("heading", { name: "Home Page" });
+    const heading = screen.getByRole("heading", {
+      name: "Welcome to Car Garage",
+    });
     expect(heading).toBeInTheDocument();
   });
 });
