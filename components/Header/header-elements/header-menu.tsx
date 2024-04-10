@@ -5,7 +5,7 @@ const HeaderMenu = () => {
   const isAuth = true;
 
   return (
-    <nav>
+    <nav data-testid="header-nav">
       <ul className="flex gap-2 items-center h-full">
         {nav.map(({ auth, id, path, title }) => (
           <li key={id} className="flex">
