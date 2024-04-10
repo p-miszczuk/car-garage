@@ -3,7 +3,10 @@ import HeaderView from "./header-view";
 
 const HeaderContainer = () => {
   return (
-    <header className="w-full h-14 flex justify-between border-b-white border-b-2">
+    <header
+      className="w-full h-14 flex justify-between border-b-white border-b-2"
+      data-testid="main-header"
+    >
       <HeaderView />
     </header>
   );
