@@ -11,8 +11,12 @@ export default function Home() {
   return (
     <main className="w-100 h-[calc(100%-7rem)]">
       <article className="h-full">
-        <h1 className="text-2xl font-bold py-5">{header} Car Garage </h1>
-        <p className="text-xl">{description}</p>
+        <h1 className="text-2xl font-bold py-5" data-testid="home-header">
+          {header} Car Garage{" "}
+        </h1>
+        <p className="text-xl" data-testid="home-description">
+          {description}
+        </p>
       </article>
     </main>
   );
