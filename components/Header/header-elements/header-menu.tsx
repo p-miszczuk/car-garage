@@ -2,7 +2,7 @@ import Link from "next/link";
 import { nav } from "../constants";
 
 const HeaderMenu = () => {
-  const isAuth = true;
+  const isAuth = false;
 
   return (
     <nav data-testid="header-nav">

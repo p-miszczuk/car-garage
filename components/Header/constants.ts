@@ -6,14 +6,8 @@ export const nav = [
     auth: true,
   },
   {
-    id: "log_in",
-    path: "/log-in",
-    title: "Log in",
-    auth: false,
-  },
-  {
     id: "sign_up",
-    path: "/sign-up",
+    path: "/auth",
     title: "Sign up",
     auth: false,
   },
@@ -24,4 +18,4 @@ export const nav = [
     type: "button",
     auth: true,
   },
-] as const;
+];
