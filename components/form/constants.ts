@@ -1,7 +1,7 @@
 export const elements = {
   login: [
     {
-      id: "email",
+      id: "login",
       label: "Enter e-mail",
       type: "text",
     },
@@ -13,7 +13,7 @@ export const elements = {
   ],
   signup: [
     {
-      id: "email",
+      id: "login",
       label: "Enter e-mail",
       type: "text",
     },
@@ -29,3 +29,5 @@ export const elements = {
     },
   ],
 } as const;
+
+export const FORM_TYPES = ["login", "signup"] as const;

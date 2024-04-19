@@ -14,7 +14,7 @@ export const getDescription = (page: string) => {
 };
 
 const VALIDATORS = {
-  email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+  email: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
   password: /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{5,}$/,
 };
 
