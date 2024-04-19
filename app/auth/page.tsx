@@ -6,7 +6,7 @@ export const Auth = () => {
     <section className="flex flex-col items-center justify-center h-full border-r-2">
       <Form title="Log in" type="login" />
       <p className="pt-4">
-        Don’t have an account?
+        Don’t have an account?&nbsp;
         <Link
           href="/auth/sign-up"
           className="text-green-400 hover:text-green-300"
