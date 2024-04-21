@@ -1,5 +1,6 @@
 "use server";
 
+import { registerUser } from "@/lib/auth-actions";
 import { validateFormField } from "@/utils";
 
 type Data = {
@@ -7,8 +8,8 @@ type Data = {
 };
 
 export type StateStatus = {
-  readonly message: string;
-  readonly type: string;
+  message: string;
+  type: string;
 };
 
 const MESSAGE = {
@@ -60,7 +61,6 @@ export const handleFormAction = async <T extends FormData>(
   if (isLoginForm) {
     //email & password validation
     const isSignUpForm = typeof data.confirm === "string";
-    console.log("🚀 ~ isSignUpForm:", isSignUpForm, data.confirm);
 
     if (
       isSignUpForm &&
@@ -84,7 +84,9 @@ export const handleFormAction = async <T extends FormData>(
 
       return getMessage(type);
     }
-    //TODO auth
+
+    const result = await registerUser(data);
+    console.log("🚀 ~ result:", result);
   }
 
   return getMessage();

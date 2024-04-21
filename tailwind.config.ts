@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { nextui } from "@nextui-org/react";
 import { PluginCreator } from "tailwindcss/types/config";
 
 type Plugin = {
@@ -27,6 +28,7 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     container: {
@@ -37,6 +39,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [pluginCreator],
+  plugins: [pluginCreator, nextui()],
 };
 export default config;

@@ -1,7 +1,7 @@
 "use client";
 
 import { elements, FORM_TYPES } from "./constants";
-import { handleFormAction, StateStatus } from "@/lib/actions";
+import { handleFormAction, StateStatus } from "@/lib/form-actions";
 import { useFormState } from "react-dom";
 import FormView from "./form-view";
 import SubmitButton from "./form-button";
@@ -16,7 +16,7 @@ type FormProps = {
 const INITIAL_STATE = {
   type: "",
   message: "",
-};
+} as const;
 
 const FormContainer = ({ title, type = "" }: FormProps) => {
   const [state, formAction] = useFormState<Promise<StateStatus>, FormData>(
