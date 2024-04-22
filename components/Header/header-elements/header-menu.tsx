@@ -1,5 +1,8 @@
-import Link from "next/link";
+"use client";
+
 import { nav } from "../constants";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const HeaderMenu = () => {
   const isAuth = false;

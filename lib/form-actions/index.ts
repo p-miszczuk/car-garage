@@ -2,6 +2,7 @@
 
 import { registerUser } from "@/lib/auth-actions";
 import { validateFormField } from "@/utils";
+import { signIn } from "next-auth/react";
 
 type Data = {
   [key: string]: string;
@@ -56,9 +57,9 @@ export const handleFormAction = async <T extends FormData>(
     confirm: formData.get("confirm"),
   });
 
-  const isLoginForm = data?.login !== undefined;
+  const isAuthForm = data?.login !== undefined;
 
-  if (isLoginForm) {
+  if (isAuthForm) {
     //email & password validation
     const isSignUpForm = typeof data.confirm === "string";
 
@@ -85,8 +86,7 @@ export const handleFormAction = async <T extends FormData>(
       return getMessage(type);
     }
 
-    const result = await registerUser(data);
-    console.log("🚀 ~ result:", result);
+    await registerUser(data);
   }
 
   return getMessage();

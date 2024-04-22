@@ -10,28 +10,28 @@ import { User } from "@prisma/client";
 
 export const authOptions: AuthOptions = {
   pages: {
-    signIn: "/auth/signin",
+    signIn: "/auth",
   },
-  session: {
-    strategy: "jwt",
-  },
+  //   session: {
+  //     strategy: "jwt",
+  //   },
   jwt: {
     secret: process.env.NEXTAUTH_SECRET,
   },
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-      idToken: true,
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_CLIENT_ID ?? "",
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
+    //   idToken: true,
 
-      authorization: {
-        params: {
-          scope: "openid profile email",
-        },
-      },
-    }),
+    //   authorization: {
+    //     params: {
+    //       scope: "openid profile email",
+    //     },
+    //   },
+    // }),
     CredentialsProvider({
-      name: "Credentials",
+      name: "credentials",
 
       credentials: {
         username: {
@@ -65,15 +65,15 @@ export const authOptions: AuthOptions = {
         if (!isPassowrdCorrect)
           throw new Error("User name or password is not correct");
 
-        if (!user.emailVerified)
-          throw new Error("Please verify your email first!");
+        // if (!user.emailVerified)
+        //   throw new Error("Please verify your email first!");
 
         const { password, ...userWithoutPass } = user;
         return userWithoutPass;
       },
     }),
   ],
-
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, user }) {
       if (user) token.user = user as User;

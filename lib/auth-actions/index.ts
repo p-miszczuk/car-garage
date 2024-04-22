@@ -14,7 +14,6 @@ import { prisma } from "@/lib/prisma";
 export async function registerUser(
   user: Omit<User, "id" | "emailVerified" | "image">
 ) {
-  console.log("🚀 ~ user:", user);
   const result = await prisma.user.create({
     data: {
       email: user.login,

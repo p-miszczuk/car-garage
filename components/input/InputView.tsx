@@ -1,22 +1,35 @@
+"use client";
+
+import { validateField, validateFormField } from "@/utils";
+import { UseFormRegister } from "react-hook-form";
+import { FormValues } from "../form/form-view";
+
+type Field = "login" | "password" | "confirm";
+
 type InputView = {
-  id: string;
-  onBlur?: () => void;
-  onChange?: () => void;
+  id: Field;
+  register: UseFormRegister<FormValues>;
+  required: boolean;
   type: string;
 };
 
 export type InputViewProps = Readonly<InputView>;
 
-const InputView = ({ id, onBlur, onChange, type }: InputViewProps) => {
+const InputView = ({
+  id,
+  register,
+  required = false,
+  type = "text",
+}: InputViewProps) => {
   return (
     <div className="border shadow rounded">
       <input
-        className="w-full text-black"
-        id={id}
-        name={id}
+        className="w-full text-black p-1"
         type={type}
-        {...(!onBlur && { onBlur })}
-        {...(!!onChange && { onChange })}
+        {...register(id, {
+          required: required ? `The ${id} field is required` : false,
+          validate: validateField(id),
+        })}
       />
     </div>
   );
