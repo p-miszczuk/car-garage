@@ -1,6 +1,5 @@
 "use server";
 
-import { User } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 // import {
 //   compileActivationTemplate,
@@ -10,9 +9,7 @@ import * as bcrypt from "bcrypt";
 // import { signJwt, verifyJwt } from "../jwt";
 import { prisma } from "@/lib/prisma";
 
-export async function registerUser(
-  user: Omit<User, "id" | "emailVerified" | "image">
-) {
+export async function registerUser(user: { login: string; password: string }) {
   const result = await prisma.user.create({
     data: {
       firstName: "",

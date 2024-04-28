@@ -1,8 +1,8 @@
 export const nav = [
   {
     id: "my_cars",
-    path: "/cars",
-    title: "Cars",
+    path: "/vehicles",
+    title: "My Cars",
     auth: true,
   },
   {

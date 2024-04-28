@@ -1,6 +1,7 @@
 import AuthProviders from "@/components/auth-providers";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import UserAuthChecker from "@/components/user-auth-check";
 import "../styles/globals.css";
 
 export default function RootLayout({
@@ -14,6 +15,7 @@ export default function RootLayout({
         <AuthProviders>
           <Header />
           {children}
+          <UserAuthChecker />
         </AuthProviders>
         <Footer />
       </body>

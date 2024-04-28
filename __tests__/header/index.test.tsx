@@ -84,8 +84,8 @@ describe("Testing Main Header", () => {
 
     const links = [
       {
-        title: /Cars/g,
-        href: "/cars",
+        title: /My Cars/g,
+        href: "/vehicles",
       },
     ];
 
