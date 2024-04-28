@@ -2,8 +2,8 @@ import transcriptions from "../shares/transcriptions/index.json";
 import _get from "lodash/get";
 
 type Validate = {
-  field: string;
-  value: string;
+  readonly field: string;
+  readonly value: string;
 };
 
 const MESSAGE = {
@@ -12,7 +12,7 @@ const MESSAGE = {
   PASSWORD: "password",
 } as const;
 
-const getMessage = (type: string): string => {
+export const getMessage = (type: string): string => {
   switch (type) {
     case MESSAGE.CONFIRM:
       return "Passwords are not the same. Please enter correct password.";
@@ -33,21 +33,21 @@ export const getDescription = (page: string) => {
 };
 
 const VALIDATORS = {
-  email: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
+  login: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
   password: /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{5,}$/,
 };
 
 export const validateField =
   (id: string) =>
-  (value: string = ""): string => {
-    const field = id === "login" ? "email" : id;
+  (value: string = ""): string | boolean => {
+    const field = id === "confirm" ? "password" : id;
 
     const isValid = validateFormField({
       field,
       value,
     });
 
-    if (isValid) return "";
+    if (isValid) return true;
 
     return getMessage(id);
   };

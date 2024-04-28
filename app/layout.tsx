@@ -1,4 +1,4 @@
-import AuthProviders from "@/components/AuthProviders";
+import AuthProviders from "@/components/auth-providers";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import "../styles/globals.css";

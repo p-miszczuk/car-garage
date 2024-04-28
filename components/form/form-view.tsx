@@ -1,9 +1,13 @@
 "use client";
 
 import { elements } from "./constants";
+import { getMessage } from "@/utils";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { signIn, SignInResponse } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import Input from "../input";
 import SubmitButton from "./form-button";
+import { registerUser } from "@/lib/auth-actions";
 
 export type FormValues = {
   login: string;
@@ -11,15 +15,57 @@ export type FormValues = {
   confirm?: string;
 };
 
+const isId = (resp: unknown) => {
+  return (
+    resp && typeof resp === "object" && "id" in resp && resp.id !== undefined
+  );
+};
+
 const FormView = ({ type = "login" }: { type: string }): JSX.Element => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
-    watch,
+    setError,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data): Promise<void> => {
+    if (data.confirm) {
+      if (data.confirm !== data.password) {
+        setError("confirm", {
+          type: "validation",
+          message: getMessage("confirm"),
+        });
+        return;
+      }
+
+      try {
+        const resp: unknown = await registerUser(data);
+        isId(resp) && router.push("/auth");
+      } catch (err) {
+        setError("confirm", {
+          type: "validation",
+          message: "Please try again",
+        });
+      }
+      return;
+    }
+
+    const resp: SignInResponse | undefined = await signIn("credentials", {
+      redirect: false,
+      username: data.login,
+      password: data.password,
+    });
+
+    if (resp?.ok) return router.push("/");
+
+    setError("confirm", {
+      type: "validation",
+      message: resp?.error || "Please try again",
+    });
+  };
 
   const inputs = [...elements[type as keyof typeof elements]];
 

@@ -2,7 +2,6 @@
 
 import { registerUser } from "@/lib/auth-actions";
 import { validateFormField } from "@/utils";
-import { signIn } from "next-auth/react";
 
 type Data = {
   [key: string]: string;

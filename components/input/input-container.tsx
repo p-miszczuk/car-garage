@@ -1,8 +1,9 @@
 "use client";
 
-import InputView, { InputViewProps } from "./InputView";
+import InputView, { InputViewProps } from "./input-view";
 import { UseFormRegister } from "react-hook-form";
 import { FormValues } from "../form/form-view";
+import Message from "../form/form-message";
 
 type InputContainerProps = InputViewProps & {
   readonly error: string;
@@ -23,7 +24,7 @@ const InputContainer = ({
     <div className="flex flex-col mb-5 w-full">
       <label htmlFor={id}>{label}</label>
       <InputView id={id} type={type} register={register} required={required} />
-      {error && <p className="p-1 text-red-600 text-[13px]">{error}</p>}
+      {error && <Message message={error} />}
     </div>
   );
 };
