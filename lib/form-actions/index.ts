@@ -85,7 +85,7 @@ export const handleFormAction = async <T extends FormData>(
       return getMessage(type);
     }
 
-    await registerUser(data);
+    await registerUser({ login: data.login, password: data.password });
   }
 
   return getMessage();

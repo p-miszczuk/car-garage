@@ -7,11 +7,6 @@ type FormProps = {
   readonly type: string;
 };
 
-const INITIAL_STATE = {
-  type: "",
-  message: "",
-} as const;
-
 const FormContainer = ({ title, type = "" }: FormProps) => {
   return (
     <div
