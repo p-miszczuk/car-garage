@@ -4,11 +4,13 @@ export const elements = {
       id: "login",
       label: "Enter e-mail",
       type: "text",
+      required: true,
     },
     {
       id: "password",
       label: "Enter password",
       type: "password",
+      required: true,
     },
   ],
   signup: [
@@ -16,16 +18,19 @@ export const elements = {
       id: "login",
       label: "Enter e-mail",
       type: "text",
+      required: true,
     },
     {
       id: "password",
       label: "Enter password",
       type: "password",
+      required: true,
     },
     {
       id: "confirm",
       label: "Confirm password",
       type: "password",
+      required: true,
     },
   ],
 } as const;

@@ -6,9 +6,9 @@ export const nav = [
     auth: true,
   },
   {
-    id: "sign_up",
+    id: "log_in",
     path: "/auth",
-    title: "Sign up",
+    title: "Log in",
     auth: false,
   },
   {
