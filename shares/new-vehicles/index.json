@@ -1,0 +1,18 @@
+{
+  "vehicles": [
+    {
+      "value": "",
+      "label": "Choose an option",
+      "disabled": true
+    },
+    {
+      "value": "car",
+      "label": "Car"
+    },
+    {
+      "value": "motocycle",
+      "label": "Motocycle"
+    }
+  ],
+  "options": ["producent", "model", "type", "years", "distance"]
+}

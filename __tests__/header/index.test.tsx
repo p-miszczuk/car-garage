@@ -4,7 +4,6 @@ import Header from "@/components/header";
 import HeaderLogo from "@/components/Header/header-elements/header-logo";
 import HeaderMenu from "@/components/header/header-elements/header-menu/header-menu-content";
 import "@testing-library/jest-dom";
-import { userIsAuthenticatedSession } from "../utils";
 
 jest.mock("next-auth/react");
 const useSessionMocked = jest.mocked(useSession);
