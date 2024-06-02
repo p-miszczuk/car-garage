@@ -1,25 +1,31 @@
+import { UseFormRegister, FieldValues } from "react-hook-form";
 import SelectView from "./select-view";
 
 interface Option {
-  value: string;
+  id: string;
   label: string;
   disabled?: boolean;
 }
 
-export interface ViewProps {
+export interface ViewProps<T extends FieldValues> {
   options: Option[];
-  value: string;
-  onChange: (value: string) => void;
   placeholder?: string;
+  register?: UseFormRegister<T>;
+  onChange?: (val: string) => void;
 }
 
 interface Props {
   label?: string;
 }
 
-type SelectContainerProps = Readonly<Props & ViewProps>;
+type SelectContainerProps<T extends FieldValues> = Readonly<
+  Props & ViewProps<T>
+>;
 
-const SelectContainer = ({ label, ...rest }: SelectContainerProps) => {
+const SelectContainer = <T extends FieldValues>({
+  label,
+  ...rest
+}: SelectContainerProps<T>) => {
   return (
     <div className="select-container mb-3 py-1 px-4 rounded border-2 border-solid">
       {label && (

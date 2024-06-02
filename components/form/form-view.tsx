@@ -5,9 +5,9 @@ import { getMessage } from "@/utils";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { signIn, SignInResponse } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Input from "../input";
-import SubmitButton from "./form-button";
 import { registerUser } from "@/lib/auth-actions";
+import Input from "../tools/input";
+import SubmitButton from "./form-button";
 
 export type FormValues = {
   login: string;
@@ -68,6 +68,7 @@ const FormView = ({ type = "login" }: { type: string }): JSX.Element => {
   };
 
   const inputs = [...elements[type as keyof typeof elements]];
+  const isAuthForm = ["signup", "login"].includes(type);
 
   return (
     <form
@@ -87,6 +88,7 @@ const FormView = ({ type = "login" }: { type: string }): JSX.Element => {
             type={type}
             register={register}
             required={required}
+            isAuthForm={isAuthForm}
           />
         );
       })}

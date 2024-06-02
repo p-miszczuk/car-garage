@@ -1,2 +1,2 @@
-import FormNewCarContainer from "./form-new-car-container";
-export default FormNewCarContainer;
+import FormNewCar from "./form-new-car-container";
+export default FormNewCar;

@@ -3,7 +3,7 @@
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import Button from "@/components/button";
+import Button from "@/components/tools/button";
 
 type Props = {
   auth: boolean;

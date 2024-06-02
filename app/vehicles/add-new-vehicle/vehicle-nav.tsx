@@ -8,7 +8,7 @@ const { vehicles } = newVehiclesConfig;
 
 export type VehiclesConfig = typeof vehicles;
 
-const TabbedNavigation = () => {
+const VehicleNav = () => {
   const router = useRouter();
 
   const handleChangeOption = (value: string) => {
@@ -16,15 +16,14 @@ const TabbedNavigation = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-w-72 sm:min-w-96">
       <Select
         options={vehicles}
         label="Select vehicle"
-        value=""
         onChange={handleChangeOption}
       />
     </div>
   );
 };
 
-export default TabbedNavigation;
+export default VehicleNav;
