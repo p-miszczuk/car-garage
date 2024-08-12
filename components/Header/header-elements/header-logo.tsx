@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LogoIcon from "@/shares/images/logo-icon.svg";
+import LogoIcon from "../../../public/assets/images/logo-icon.svg";
 
 const HeaderLogo = () => {
   return (
@@ -7,7 +7,7 @@ const HeaderLogo = () => {
       <Image
         priority={false}
         src={LogoIcon}
-        alt="Logo-car-garage"
+        alt="Logo car garage"
         width={30}
         height={30}
       />

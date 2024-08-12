@@ -1,0 +1,28 @@
+{
+  "boxes": [
+    {
+      "id": "my-vehicles",
+      "path": "vehicles/my-vehicles",
+      "image": "vehicles-img",
+      "title": "My vehicles"
+    },
+    {
+      "id": "add-new-vehicle",
+      "path": "vehicles/add-new-vehicle",
+      "image": "vehicle-img",
+      "title": "Add new vehicle"
+    },
+    {
+      "id": "reports",
+      "path": "vehicles/reports",
+      "image": "report-img",
+      "title": "Reports"
+    },
+    {
+      "id": "reminders",
+      "path": "vehicles/reminders",
+      "image": "reminder-img",
+      "title": "Reminders"
+    }
+  ]
+}

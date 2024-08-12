@@ -1,10 +1,15 @@
 import transcriptions from "../shares/transcriptions/index.json";
 import _get from "lodash/get";
 
-type Validate = {
+interface Validate {
   readonly field: string;
   readonly value: string;
-};
+}
+
+interface ValidateField {
+  readonly id: string;
+  readonly isAuthForm: boolean;
+}
 
 const MESSAGE = {
   CONFIRM: "confirm",
@@ -38,8 +43,9 @@ const VALIDATORS = {
 };
 
 export const validateField =
-  (id: string) =>
+  ({ id, isAuthForm }: ValidateField) =>
   (value: string = ""): string | boolean => {
+    if (!isAuthForm) return true;
     const field = id === "confirm" ? "password" : id;
 
     const isValid = validateFormField({

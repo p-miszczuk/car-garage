@@ -9,8 +9,8 @@ const REDIRECT_UNAUTH_ROUTS: Array<string> = ["/vehicles"];
 
 const UserAuthChecker = (): null => {
   const pathname = usePathname();
-  const { status } = useSession();
   const router = useRouter();
+  const { status } = useSession();
 
   const isUserAuth = status === "authenticated";
 

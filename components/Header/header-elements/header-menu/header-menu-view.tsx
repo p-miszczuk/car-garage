@@ -3,7 +3,7 @@
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import Button from "@/components/button";
+import Button from "@/components/tools/button";
 
 type Props = {
   auth: boolean;
@@ -25,9 +25,11 @@ const HeaderMenuView = ({ auth, path, title, type }: Props) => {
     <li className="flex">
       {isAuth === auth ? (
         type === "button" ? (
-          <Button onClick={handleClickButton} title={title} />
+          <Button onClick={handleClickButton} title={title} bold />
         ) : (
-          <Link href={path}>{title} </Link>
+          <Link href={path} className="font-bold">
+            {title}{" "}
+          </Link>
         )
       ) : null}
     </li>

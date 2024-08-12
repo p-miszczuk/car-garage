@@ -1,14 +1,13 @@
 import { validateField } from "@/utils";
 import { UseFormRegister } from "react-hook-form";
-import { FormValues } from "../form/form-view";
-
-type Field = "login" | "password" | "confirm";
+import { FormValues } from "../../form/form-view";
 
 type InputView = {
-  id: Field;
-  register: UseFormRegister<FormValues>;
+  id: string;
+  register: UseFormRegister<any>;
   required: boolean;
   type: string;
+  isAuthForm?: boolean;
 };
 
 export type InputViewProps = Readonly<InputView>;
@@ -18,6 +17,7 @@ const InputView = ({
   register,
   required = false,
   type = "text",
+  isAuthForm = false,
 }: InputViewProps) => {
   return (
     <div className="border shadow rounded">
@@ -26,7 +26,7 @@ const InputView = ({
         type={type}
         {...register(id, {
           required: required ? `The ${id} field is required` : false,
-          validate: validateField(id),
+          validate: validateField({ id, isAuthForm }),
         })}
       />
     </div>
