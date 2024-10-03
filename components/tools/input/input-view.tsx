@@ -23,7 +23,9 @@ const InputView = ({
     <div className="border shadow rounded">
       <input
         className="w-full text-black p-1"
+        data-testid={id}
         type={type}
+        id={id}
         {...register(id, {
           required: required ? `The ${id} field is required` : false,
           validate: validateField({ id, isAuthForm }),

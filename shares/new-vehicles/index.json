@@ -16,7 +16,7 @@
   "options": [
     {
       "field": "brand",
-      "label": "Producent",
+      "label": "Brand",
       "required": true,
       "type": "text"
     },
@@ -37,7 +37,7 @@
       "type": "number"
     },
     {
-      "field": "fuel_type",
+      "field": "fuel",
       "label": "Fuel",
       "required": false,
       "options": [
@@ -62,7 +62,8 @@
           "label": "Diesel"
         }
       ],
-      "type": "select"
+      "type": "select",
+      "placeholder": "Select fuel"
     }
   ]
 }

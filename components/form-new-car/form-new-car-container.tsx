@@ -16,6 +16,7 @@ export type FormValues = {
   brand: string;
   model: string;
   distance: string;
+  fuel: string;
 };
 
 const FormNewCarContainer = () => {
@@ -24,16 +25,18 @@ const FormNewCarContainer = () => {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (
-    data: FormValues,
+    data: FormValues
   ): Promise<void> => {
     const formData = {
       vehicleType: params["vehicle-type"]?.[0] as string,
       brand: data.brand,
       model: data.model,
       distance: Number(data.distance),
+      fuel: data.fuel,
     };
 
     const result = await addNewVehicle(formData);
@@ -43,7 +46,7 @@ const FormNewCarContainer = () => {
   return (
     <div className="rounded border border-solid p-4 min-w-72 sm:min-w-96">
       <form onSubmit={handleSubmit(onSubmit)} name="new-car-options">
-        <FormNewCarView register={register} errors={errors} />
+        <FormNewCarView register={register} control={control} errors={errors} />
         <SubmitButton />
       </form>
     </div>

@@ -27,7 +27,7 @@ const InputContainer = ({
   isAuthForm,
 }: InputContainerProps) => {
   return (
-    <div className="flex flex-col mb-5 w-full">
+    <div className="flex flex-col mb-5 w-full" aria-label={label}>
       <label htmlFor={id}>{label}</label>
       <InputView
         id={id}
