@@ -46,7 +46,7 @@ const getMessage = (type?: string): StateStatus => {
 
 export const handleFormAction = async <T extends FormData>(
   prevState: any,
-  formData: T
+  formData: T,
 ): Promise<StateStatus> => {
   let data: Data = {};
 
