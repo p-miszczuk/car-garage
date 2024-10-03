@@ -2,7 +2,7 @@ export const nav = [
   {
     id: "my_cars",
     path: "/vehicles",
-    title: "My Cars",
+    title: "Vehicles",
     auth: true,
   },
   {

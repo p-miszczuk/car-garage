@@ -12,7 +12,6 @@ type VehicleType = Readonly<Props>;
 
 const VehicleType = (props: VehicleType) => {
   const vehicleType = _get(props, "params.vehicle-type[0]", null);
-  console.log("🚀 ~ VehicleType ~ vehicleType:", vehicleType);
 
   return vehicleType ? <FormNewCar /> : <EmptyMessage />;
 };

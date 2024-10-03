@@ -1,15 +1,15 @@
 {
   "vehicles": [
     {
-      "id": "",
+      "value": "",
       "label": "Choose an option"
     },
     {
-      "id": "car",
+      "value": "car",
       "label": "Car"
     },
     {
-      "id": "motocycle",
+      "value": "motocycle",
       "label": "Motocycle"
     }
   ],
@@ -20,32 +20,45 @@
       "required": true,
       "type": "text"
     },
-    { "field": "model", "label": "Model", "required": true, "type": "text" },
-    { "field": "year", "label": "Prod. year", "type": "date_picker" },
-    { "field": "distance", "label": "Distance", "type": "number" },
+    {
+      "field": "model",
+      "label": "Model",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "field": "year",
+      "label": "Prod. year",
+      "type": "date_picker"
+    },
+    {
+      "field": "distance",
+      "label": "Distance",
+      "type": "number"
+    },
     {
       "field": "fuel_type",
       "label": "Fuel",
       "required": false,
       "options": [
         {
-          "id": "benzin",
+          "value": "benzin",
           "label": "Benzin"
         },
         {
-          "id": "benzin_lpg",
+          "value": "benzin_lpg",
           "label": "Benzin + LPG"
         },
         {
-          "id": "electric",
+          "value": "electric",
           "label": "Electric"
         },
         {
-          "id": "hybrid",
+          "value": "hybrid",
           "label": "Hybrid"
         },
         {
-          "id": "diesel",
+          "value": "diesel",
           "label": "Diesel"
         }
       ],

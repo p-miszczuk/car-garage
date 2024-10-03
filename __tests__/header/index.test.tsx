@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { useSession } from "next-auth/react";
 import Header from "@/components/header";
-import HeaderLogo from "@/components/Header/header-elements/header-logo";
+import HeaderLogo from "@/components/header/header-elements/header-logo";
 import HeaderMenu from "@/components/header/header-elements/header-menu/header-menu-content";
 import "@testing-library/jest-dom";
 
@@ -43,7 +43,7 @@ describe("Testing Main Header", () => {
     });
 
     render(<HeaderLogo />);
-    const logoImage = screen.getByAltText("Logo-car-garage");
+    const logoImage = screen.getByAltText("Logo car garage");
     const logoName = screen.getByTestId("logo-name");
     expect(logoImage).toBeInTheDocument();
     expect(logoName).toBeInTheDocument();
@@ -83,7 +83,7 @@ describe("Testing Main Header", () => {
 
     const links = [
       {
-        title: /My Cars/g,
+        title: /Vehicles/g,
         href: "/vehicles",
       },
     ];

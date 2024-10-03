@@ -5,7 +5,7 @@ import { FormValues } from "./form-new-car-container";
 import Select from "../tools/selects/select";
 
 interface FormNewCarViewProps {
-  errors: Array<{}>;
+  errors: any;
   register: UseFormRegister<any>;
 }
 
@@ -46,7 +46,7 @@ const FormNewCarView = ({ register, errors }: FormNewCarViewProps) => {
         default:
           return null;
       }
-    }
+    },
   );
 };
 

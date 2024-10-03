@@ -7,29 +7,38 @@ import _get from "lodash/get";
 import newVehicle from "../../shares/new-vehicles/index.json";
 import FormNewCarView from "./form-new-car-view";
 import SubmitButton from "../form/form-button";
-import Input from "../tools/input";
-
-export type FormValues = {
-  [K in (typeof options)[number]["field"]]: string;
-};
+import { addNewVehicle } from "@/lib/new-car-actions";
 
 const { options } = newVehicle;
 
-const VEHICLE_TYPE = "vehicle-type" as const;
+export type FormValues = {
+  vehicleType: string;
+  brand: string;
+  model: string;
+  distance: string;
+};
 
 const FormNewCarContainer = () => {
+  const params = useParams();
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
-  } = useForm<any>();
+  } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = async (data): Promise<void> => {
-    console.log("🚀 ~ constonSubmit:SubmitHandler<FormValues>= ~ data:", data);
+  const onSubmit: SubmitHandler<FormValues> = async (
+    data: FormValues,
+  ): Promise<void> => {
+    const formData = {
+      vehicleType: params["vehicle-type"]?.[0] as string,
+      brand: data.brand,
+      model: data.model,
+      distance: Number(data.distance),
+    };
+
+    const result = await addNewVehicle(formData);
+    console.log(result);
   };
-
-  // const vehicleType = _get(params, `${VEHICLE_TYPE}[0]`, null);
 
   return (
     <div className="rounded border border-solid p-4 min-w-72 sm:min-w-96">
