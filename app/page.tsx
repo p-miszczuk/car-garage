@@ -1,3 +1,4 @@
+import { getDescription } from "@/utils";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,9 +6,18 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const { header, description } = getDescription("home");
+
   return (
-    <main className="w-100">
-      <h1>Home Page</h1>
+    <main className="w-100 h-[calc(100%-7rem)]">
+      <article className="h-full">
+        <h1 className="text-2xl font-bold py-5" data-testid="home-header">
+          {header} Car Garage{" "}
+        </h1>
+        <p className="text-xl" data-testid="home-description">
+          {description}
+        </p>
+      </article>
     </main>
   );
 }

@@ -1,0 +1,68 @@
+{
+  "vehicles": [
+    {
+      "value": "",
+      "label": "Choose an option"
+    },
+    {
+      "value": "car",
+      "label": "Car"
+    },
+    {
+      "value": "motocycle",
+      "label": "Motocycle"
+    }
+  ],
+  "options": [
+    {
+      "field": "brand",
+      "label": "Producent",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "field": "model",
+      "label": "Model",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "field": "year",
+      "label": "Prod. year",
+      "type": "date_picker"
+    },
+    {
+      "field": "distance",
+      "label": "Distance",
+      "type": "number"
+    },
+    {
+      "field": "fuel_type",
+      "label": "Fuel",
+      "required": false,
+      "options": [
+        {
+          "value": "benzin",
+          "label": "Benzin"
+        },
+        {
+          "value": "benzin_lpg",
+          "label": "Benzin + LPG"
+        },
+        {
+          "value": "electric",
+          "label": "Electric"
+        },
+        {
+          "value": "hybrid",
+          "label": "Hybrid"
+        },
+        {
+          "value": "diesel",
+          "label": "Diesel"
+        }
+      ],
+      "type": "select"
+    }
+  ]
+}

@@ -1,20 +1,14 @@
 export const nav = [
   {
     id: "my_cars",
-    path: "/cars",
-    title: "Cars",
+    path: "/vehicles",
+    title: "Vehicles",
     auth: true,
   },
   {
     id: "log_in",
-    path: "/log-in",
+    path: "/auth",
     title: "Log in",
-    auth: false,
-  },
-  {
-    id: "sign_up",
-    path: "/sign-up",
-    title: "Sign up",
     auth: false,
   },
   {
@@ -24,4 +18,4 @@ export const nav = [
     type: "button",
     auth: true,
   },
-] as const;
+];
