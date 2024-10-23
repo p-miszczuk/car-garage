@@ -34,6 +34,7 @@ const BoxesMenuView = ({ image, title, path }: BoxesMenuViewProps) => {
     <div
       className={`flex justify-center items-center h-full relative cursor-pointer hover:scale-110 duration-300`}
       onClick={handleClickBox}
+      data-testid="vehicle-nav-box"
     >
       <Image
         className="absolute top-0 left-0 w-full"

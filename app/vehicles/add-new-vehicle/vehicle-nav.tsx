@@ -21,6 +21,8 @@ const VehicleNav = () => {
   return (
     <div className="flex flex-col min-w-72 sm:min-w-96">
       <Select
+        id="select-vehicle"
+        placeholder="Choose an option"
         options={vehicles}
         label="Select vehicle"
         onChange={handleChangeOption}

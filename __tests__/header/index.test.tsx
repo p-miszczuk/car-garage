@@ -1,14 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import { useSession } from "next-auth/react";
 import Header from "@/components/header";
-import HeaderLogo from "@/components/header/header-elements/header-logo";
 import HeaderMenu from "@/components/header/header-elements/header-menu/header-menu-content";
+import HeaderLogo from "@/components/header/header-elements/header-logo";
 import "@testing-library/jest-dom";
 
 jest.mock("next-auth/react");
 const useSessionMocked = jest.mocked(useSession);
+console.error = jest.fn();
 
-const USER_AUTHENTICATED = {
+export const USER_AUTHENTICATED = {
   data: {
     user: {
       email: "johndoe@test.pl",
@@ -19,7 +20,7 @@ const USER_AUTHENTICATED = {
   status: "authenticated",
 } as const;
 
-const USER_UNAUTHENTICATED = {
+export const USER_UNAUTHENTICATED = {
   data: null,
   status: "unauthenticated",
 } as const;

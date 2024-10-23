@@ -8,11 +8,12 @@ export interface VehicleData {
   model: string;
   vehicleType: string;
   distance: number;
+  fuel: string;
   id: string;
 }
 
 export const addNewVehicle = async (
-  data: Omit<VehicleData, "id">,
+  data: Omit<VehicleData, "id">
 ): Promise<any> => {
   try {
     // @ts-ignore

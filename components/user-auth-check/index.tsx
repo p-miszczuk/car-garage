@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 const REDIRECT_AUTH_ROUTS: Array<string> = ["/auth", "/auth/sign-up"];
 const REDIRECT_UNAUTH_ROUTS: Array<string> = ["/vehicles"];
@@ -20,7 +20,7 @@ const UserAuthChecker = (): null => {
     } else if (!isUserAuth && REDIRECT_UNAUTH_ROUTS.includes(pathname)) {
       router.push("/auth");
     }
-  }, [pathname, isUserAuth]);
+  }, [pathname, isUserAuth, router]);
 
   return null;
 };
