@@ -40,7 +40,6 @@ const FormNewCarContainer = () => {
     };
 
     const result = await addNewVehicle(formData);
-    console.log(result);
   };
 
   return (

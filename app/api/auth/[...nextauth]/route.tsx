@@ -59,7 +59,7 @@ export const authOptions: AuthOptions = {
           throw new Error("Please Provide Your Password");
         const isPassowrdCorrect = await bcrypt.compare(
           credentials.password,
-          user.password,
+          user.password
         );
 
         if (!isPassowrdCorrect)

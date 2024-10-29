@@ -2,19 +2,19 @@ export const nav = [
   {
     id: "my_cars",
     path: "/vehicles",
-    title: "Vehicles",
+    text: "Vehicles",
     auth: true,
   },
   {
     id: "log_in",
     path: "/auth",
-    title: "Log in",
+    text: "Log in",
     auth: false,
   },
   {
     id: "log_out",
     path: "",
-    title: "Log out",
+    text: "Log out",
     type: "button",
     auth: true,
   },
