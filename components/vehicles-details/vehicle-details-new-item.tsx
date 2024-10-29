@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Button from "../tools/button";
-import CustomModal from "../tools/modal/model";
+import CustomModal from "../tools/modal";
 
 const VehicleDetailsNewItem = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +23,7 @@ const VehicleDetailsNewItem = () => {
         text="Add new item"
         customClass="bg-green-600 p-1 border rounded text-white"
       />
-      {isModalOpen ? <CustomModal /> : null}
+      {isModalOpen ? <CustomModal onClose={handleCloseModal} /> : null}
     </div>
   );
 };
