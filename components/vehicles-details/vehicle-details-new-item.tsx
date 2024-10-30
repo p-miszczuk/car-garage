@@ -23,7 +23,9 @@ const VehicleDetailsNewItem = () => {
         text="Add new item"
         customClass="bg-green-600 p-1 border rounded text-white"
       />
-      {isModalOpen ? <CustomModal onClose={handleCloseModal} /> : null}
+      {isModalOpen ? (
+        <CustomModal onClose={handleCloseModal} name="history-details" />
+      ) : null}
     </div>
   );
 };

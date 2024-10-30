@@ -1,0 +1,36 @@
+{
+  "vehicleOptions": [
+    {
+      "value": "reminder",
+      "label": "Przypomnienie"
+    },
+    {
+      "value": "checklist",
+      "label": "Lista kontrolna"
+    },
+    {
+      "value": "income",
+      "label": "Dochód"
+    },
+    {
+      "value": "route",
+      "label": "Trasa"
+    },
+    {
+      "value": "service",
+      "label": "Usługa"
+    },
+    {
+      "value": "expense",
+      "label": "Wydatek"
+    },
+    {
+      "value": "refuel",
+      "label": "Tankowanie"
+    },
+    {
+      "value": "fines",
+      "label": "Mandaty"
+    }
+  ]
+}

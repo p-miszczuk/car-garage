@@ -8,7 +8,15 @@ interface VehicleDetails {
   vehicleId: string;
 }
 
-const fetcher = async (url: string) => fetch(url).then((resp) => resp.json());
+const fetcher = async (url: string) => {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch vehicle details");
+  }
+
+  return response.json();
+};
 
 const VehicleDetailsContainer = ({
   vehicleId,
@@ -24,6 +32,8 @@ const VehicleDetailsContainer = ({
     <div>
       {isLoading ? (
         <p>Loader...</p>
+      ) : error ? (
+        <p>Error: {error.message}</p>
       ) : (
         <VehiclesDetailsView vehicle={data?.vehicle} />
       )}
