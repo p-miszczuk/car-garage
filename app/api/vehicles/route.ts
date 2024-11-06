@@ -16,7 +16,6 @@ export async function GET(req: NextRequest) {
     // NextResponse
     return NextResponse.json({ vehicle }, { status: 201 });
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: "Unauthorized: Missing token" },
       { status: 401 }
