@@ -5,7 +5,7 @@ import classnames from "classnames";
 type Props = {
   bold?: boolean;
   customClass?: string;
-  onClick: () => void;
+  onClick: (value?: any) => void;
   text: string;
   type?: "button" | "submit" | "reset" | undefined;
 };

@@ -2,150 +2,161 @@
   "vehicleOptions": [
     {
       "value": "reminder",
-      "label": "Przypomnienie"
+      "label": "Reminder"
     },
     {
       "value": "checklist",
-      "label": "Lista kontrolna"
+      "label": "Checklist"
     },
     {
       "value": "income",
-      "label": "Dochód"
+      "label": "Income"
     },
     {
       "value": "route",
-      "label": "Trasa"
+      "label": "Route"
     },
     {
       "value": "service",
-      "label": "Usługa"
+      "label": "Service"
     },
     {
       "value": "expense",
-      "label": "Wydatek"
+      "label": "Expense"
     },
     {
       "value": "refuel",
-      "label": "Tankowanie"
+      "label": "Refuel"
     },
     {
       "value": "fines",
-      "label": "Mandaty"
+      "label": "Fines"
     }
   ],
   "reminder": [
     {
       "name": "type",
+      "id": "expense_service_toggle",
       "label": "",
       "type": "toggle",
       "options": [
-        { "value": "expense", "label": "Wydatek" },
-        { "value": "service", "label": "Usługa" }
+        { "value": "expense", "label": "Expense" },
+        { "value": "service", "label": "Service" }
       ],
       "additionalFields": [
         {
-          "group": {
-            "name": "expensive",
-            "options": [
-              { "name": "category", "placeholder": "Rodzaj", "type": "text" }
-            ]
-          }
+          "name": "expense",
+          "options": [
+            {
+              "name": "expense",
+              "placeholder": "Expense",
+              "type": "text",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "service",
+          "options": [
+            {
+              "name": "service",
+              "placeholder": "Service",
+              "type": "text",
+              "required": true
+            }
+          ]
         }
       ]
     },
     {
       "name": "frequency",
+      "id": "frequency_toggle",
       "label": "",
       "type": "toggle",
       "options": [
-        { "value": "one_time", "label": "Tylko jeden raz" },
-        { "value": "repeat", "label": "Powtarzaj" }
+        { "value": "one_time", "label": "Reminder once" },
+        { "value": "repeat", "label": "Repeat" }
       ],
       "additionalFields": [
         {
-          "group": {
-            "name": "one_time",
-            "toggle": true,
-            "options": [
-              {
-                "type": "checkbox",
-                "label": "km",
-                "name": "one_time_check_km",
-                "isSelected": true,
-                "options": [
-                  {
-                    "type": "number",
-                    "placeholder": "Licznik kilometrów",
-                    "name": "distance"
-                  }
-                ]
-              },
-              {
-                "type": "checkbox",
-                "label": "Data",
-                "name": "one_time_check_date",
-                "isSelected": false,
-                "options": [
-                  {
-                    "type": "number",
-                    "placeholder": "Data",
-                    "name": "one_time_date_option"
-                  }
-                ]
-              }
-            ]
-          }
+          "name": "one_time",
+          "options": [
+            {
+              "type": "checkbox",
+              "label": "km",
+              "name": "one_time_check_km",
+              "isSelected": true,
+              "fields": [
+                {
+                  "type": "number",
+                  "placeholder": "Distance",
+                  "name": "distance"
+                }
+              ]
+            },
+            {
+              "type": "checkbox",
+              "label": "Date",
+              "name": "one_time_check_date",
+              "isSelected": false,
+              "fields": [
+                {
+                  "type": "date",
+                  "placeholder": "Date",
+                  "name": "one_time_date_option"
+                }
+              ]
+            }
+          ]
         },
         {
-          "group": {
-            "name": "repeat",
-            "toggle": true,
-            "options": [
-              {
-                "type": "checkbox",
-                "label": "km",
-                "name": "repeat_check_km",
-                "isSelected": true,
-                "options": [
-                  {
-                    "type": "number",
-                    "placeholder": "Licznik kilometrów",
-                    "name": "distance"
-                  }
-                ]
-              },
-              {
-                "type": "checkbox",
-                "label": "Time",
-                "name": "repeat_check_time",
-                "isSelected": false,
-                "options": [
-                  {
-                    "type": "number",
-                    "placeholder": "Ilość",
-                    "name": "repeat_number_km"
-                  },
-                  {
-                    "type": "select",
-                    "name": "repeat_period",
-                    "placeholder": "Period",
-                    "options": [
-                      { "value": "day", "label": "Day" },
-                      { "value": "week", "label": "Week" },
-                      { "value": "month", "label": "Month" },
-                      { "value": "year", "label": "Year" }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
+          "name": "repeat",
+          "options": [
+            {
+              "type": "checkbox",
+              "label": "km",
+              "name": "repeat_check_km",
+              "isSelected": true,
+              "fields": [
+                {
+                  "type": "number",
+                  "placeholder": "Distance",
+                  "name": "distance"
+                }
+              ]
+            },
+            {
+              "type": "checkbox",
+              "label": "Date",
+              "name": "repeat_check_date",
+              "isSelected": false,
+              "fields": [
+                {
+                  "type": "number",
+                  "placeholder": "Number",
+                  "name": "repeat_number"
+                },
+                {
+                  "type": "select",
+                  "placeholder": "Choose",
+                  "name": "repeat_date_option",
+                  "options": [
+                    { "value": "day", "label": "Day" },
+                    { "value": "week", "label": "Week" },
+                    { "value": "month", "label": "Month" },
+                    { "value": "year", "label": "Year" }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     {
-      "name": "description",
-      "placeholder": "Opis",
+      "name": "notes",
+      "id": "notes",
+      "placeholder": "Notes",
       "type": "text"
     }
   ]

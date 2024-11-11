@@ -4,7 +4,8 @@ const VehicleDetailsMetadata = ({
   brand,
   model,
   type,
-}: Omit<VehicleDetailsViewData, "id" | "distance">): JSX.Element => {
+  distance = 0,
+}: Omit<VehicleDetailsViewData, "id">): JSX.Element => {
   return (
     <div className="vehicle-metadata flex flex-col text-lg">
       <div>
@@ -24,6 +25,12 @@ const VehicleDetailsMetadata = ({
           <strong>Model: </strong>
         </em>
         <span>{model}</span>
+      </div>
+      <div>
+        <em>
+          <strong>Distance: </strong>
+        </em>
+        <span>{distance} km</span>
       </div>
     </div>
   );

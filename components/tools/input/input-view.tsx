@@ -8,6 +8,7 @@ type InputView = {
   required: boolean;
   type: string;
   isAuthForm?: boolean;
+  placeholder?: string;
 };
 
 export type InputViewProps = Readonly<InputView>;
@@ -18,6 +19,7 @@ const InputView = ({
   required = false,
   type = "text",
   isAuthForm = false,
+  placeholder = "",
 }: InputViewProps) => {
   return (
     <div className="border shadow rounded">
@@ -26,9 +28,13 @@ const InputView = ({
         data-testid={id}
         type={type}
         id={id}
+        placeholder={placeholder}
         {...register(id, {
           required: required ? `The ${id} field is required` : false,
           validate: validateField({ id, isAuthForm }),
+        })}
+        {...(type === "date" && {
+          defaultValue: new Date().toISOString().split("T")[0],
         })}
       />
     </div>

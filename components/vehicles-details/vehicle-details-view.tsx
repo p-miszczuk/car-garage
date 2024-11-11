@@ -14,12 +14,12 @@ interface VehicleDetailsViewProps {
 }
 
 const VehiclesDetailsView = ({ vehicle }: VehicleDetailsViewProps) => {
-  const { id, distance, ...rest } = vehicle;
+  const { id, ...rest } = vehicle;
 
   return (
     <div className="vehicles-details">
       <VehicleDetailsMetadata {...rest} />
-      <VehicleDetailsHistory distance={distance} />
+      <VehicleDetailsHistory />
     </div>
   );
 };

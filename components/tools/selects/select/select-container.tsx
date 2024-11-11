@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { on } from "events";
 import {
   UseFormRegister,
@@ -41,8 +42,14 @@ const SelectContainer = <T extends FieldValues>({
 }: SelectContainerProps<T>) => {
   if (!control && !onChange) return null;
 
+  const isRepeatDateOption = id === "repeat_date_option";
   return (
-    <div className="select-container mb-3 py-1" aria-label={label}>
+    <div
+      className={classNames("select-container py-1 min-w-[120px]", {
+        "mb-3": !isRepeatDateOption,
+      })}
+      aria-label={label}
+    >
       {label && (
         <label
           className="block text-gray-700 text-sm font-bold mb-2"
