@@ -36,6 +36,9 @@ const InputView = ({
         {...(type === "date" && {
           defaultValue: new Date().toISOString().split("T")[0],
         })}
+        {...(type === "time" && {
+          defaultValue: new Date().toISOString().split("T")[1].slice(0, 5),
+        })}
       />
     </div>
   );

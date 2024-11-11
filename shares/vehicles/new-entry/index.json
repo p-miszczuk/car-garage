@@ -5,14 +5,6 @@
       "label": "Reminder"
     },
     {
-      "value": "checklist",
-      "label": "Checklist"
-    },
-    {
-      "value": "income",
-      "label": "Income"
-    },
-    {
       "value": "route",
       "label": "Route"
     },
@@ -157,6 +149,250 @@
       "name": "notes",
       "id": "notes",
       "placeholder": "Notes",
+      "type": "text"
+    }
+  ],
+  "route": [
+    {
+      "name": "route_start",
+      "placeholder": "Route start",
+      "type": "text"
+    },
+    {
+      "type": "group",
+      "name": "route_start_date",
+      "fields": [
+        {
+          "type": "date",
+          "label": "Start date",
+          "name": "route_start_date"
+        },
+        {
+          "type": "time",
+          "label": "Start time",
+          "name": "route_start_time"
+        }
+      ]
+    },
+    {
+      "name": "odometer_start",
+      "placeholder": "Odometer start",
+      "type": "number"
+    },
+    {
+      "name": "route_end",
+      "placeholder": "Route end",
+      "type": "text"
+    },
+    {
+      "type": "group",
+      "name": "route_end_date",
+      "fields": [
+        {
+          "type": "date",
+          "label": "End date",
+          "name": "route_end_date"
+        },
+        {
+          "type": "time",
+          "label": "End time",
+          "name": "route_end_time"
+        }
+      ]
+    },
+    {
+      "name": "odometer_end",
+      "placeholder": "Odometer end",
+      "type": "number"
+    },
+    {
+      "name": "total_cost",
+      "placeholder": "Total cost",
+      "type": "text"
+    },
+    {
+      "name": "notes",
+      "placeholder": "Notes",
+      "type": "text"
+    }
+  ],
+  "service": [
+    {
+      "type": "group",
+      "name": "service_date",
+      "fields": [
+        {
+          "type": "date",
+          "label": "Date",
+          "name": "route_start_date"
+        },
+        {
+          "type": "time",
+          "label": "Time",
+          "name": "route_start_time"
+        }
+      ]
+    },
+    {
+      "name": "odometer",
+      "placeholder": "Odometer",
+      "type": "number"
+    },
+    {
+      "name": "service_type",
+      "placeholder": "Service type",
+      "type": "text"
+    },
+    {
+      "name": "place",
+      "placeholder": "Place",
+      "type": "text"
+    },
+    {
+      "name": "total_cost",
+      "placeholder": "Total cost",
+      "type": "text"
+    },
+    {
+      "name": "notes",
+      "placeholder": "Notes",
+      "type": "text"
+    }
+  ],
+  "expense": [
+    {
+      "type": "group",
+      "name": "expense_date",
+      "fields": [
+        {
+          "type": "date",
+          "label": "Date",
+          "name": "expense_date"
+        },
+        {
+          "type": "time",
+          "label": "Time",
+          "name": "expense_time"
+        }
+      ]
+    },
+    {
+      "name": "odometer",
+      "placeholder": "Odometer",
+      "type": "number"
+    },
+    {
+      "name": "expense_type",
+      "placeholder": "Expense type",
+      "type": "text"
+    },
+    {
+      "name": "place",
+      "placeholder": "Place",
+      "type": "text"
+    },
+    {
+      "name": "total_cost",
+      "placeholder": "Total cost",
+      "type": "text"
+    },
+    {
+      "name": "notes",
+      "placeholder": "Notes",
+      "type": "text"
+    }
+  ],
+  "refuel": [
+    {
+      "type": "group",
+      "name": "refuel_date",
+      "fields": [
+        {
+          "type": "date",
+          "label": "Date",
+          "name": "refuel_date"
+        },
+        {
+          "type": "time",
+          "label": "Time",
+          "name": "refuel_time"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "placeholder": "Fuel type",
+      "name": "select_fuel_option",
+      "options": [
+        { "value": "gasoline", "label": "Gasoline" },
+        { "value": "diesel", "label": "Diesel" },
+        { "value": "cng", "label": "CNG" },
+        { "value": "lpg", "label": "LPG" },
+        { "value": "electricity", "label": "Electricity" }
+      ]
+    },
+    {
+      "name": "odometer",
+      "placeholder": "Odometer",
+      "type": "number"
+    },
+    {
+      "name": "fuel_info",
+      "type": "group",
+      "fields": [
+        {
+          "type": "text",
+          "placeholder": "Price/L",
+          "name": "price"
+        },
+        {
+          "type": "number",
+          "placeholder": "Cost",
+          "name": "cost"
+        },
+        {
+          "type": "number",
+          "placeholder": "Odometer",
+          "name": "odometer"
+        }
+      ]
+    },
+    {
+      "name": "gas_station",
+      "placeholder": "Gas station",
+      "type": "text"
+    }
+  ],
+  "fines": [
+    {
+      "type": "group",
+      "name": "fine_date",
+      "fields": [
+        {
+          "type": "date",
+          "label": "Date",
+          "name": "fine_date"
+        },
+        {
+          "type": "time",
+          "label": "Time",
+          "name": "fine_time"
+        }
+      ]
+    },
+    {
+      "name": "fine_type",
+      "placeholder": "Fine type",
+      "type": "text"
+    },
+    {
+      "name": "place",
+      "placeholder": "Place",
+      "type": "text"
+    },
+    {
+      "name": "fine_cost",
+      "placeholder": "Fine cost",
       "type": "text"
     }
   ]

@@ -50,6 +50,7 @@ export const getField = ({
     case "text":
     case "number":
     case "date":
+    case "time":
       return (
         <Input
           register={register}
@@ -84,6 +85,14 @@ export const getField = ({
           options={field.options}
         />
       );
+    case "group":
+      return (
+        <div className="flex gap-4">
+          {field?.fields?.map((field: any) =>
+            getField({ field, register, unregister, control })
+          )}
+        </div>
+      );
     default:
       return null;
   }
@@ -105,7 +114,7 @@ const ModalView = ({ formFields, selectedOption }: ModalViewProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-fields-wrapper mb-5">
+      <div className="form-fields-wrapper mb-5 flex flex-col gap-4">
         {formFields?.map((field: any) =>
           getField({ field, register, unregister, control })
         ) || null}
