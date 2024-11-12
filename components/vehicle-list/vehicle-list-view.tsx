@@ -4,6 +4,8 @@ import Table from "rc-table";
 import _omit from "lodash/omit";
 import "./styles.scss";
 import { handleFormAction } from "@/lib/form-actions";
+import { useRouter } from "next/navigation";
+import { useMemo } from "react";
 
 interface Vehicle {
   id: string;
@@ -18,61 +20,54 @@ interface VehicleListViewData {
 }
 
 const VehicleListView = ({ vehicles = [] }: VehicleListViewData) => {
-  const columns = [
-    {
-      title: "Brand",
-      dataIndex: "brand",
-      key: "brand",
-    },
-    {
-      title: "Model",
-      dataIndex: "model",
-      key: "model",
-    },
-    {
-      title: "Vehicle Type",
-      dataIndex: "type",
-      key: "type",
-    },
-    {
-      title: "Distance",
-      dataIndex: "distance",
-      key: "distance",
-    },
-    {
-      title: "",
-      key: "open",
-      render: (text: string, record: Vehicle) => (
-        <button onClick={() => handleOpen(record.id)}>Open</button>
-      ),
-    },
-    {
-      title: "",
-      key: "delete",
-      render: (text: string, record: Vehicle) => (
-        <button onClick={() => handleDelete(record.id)}>Delete</button>
-      ),
-    },
-  ];
+  const { push } = useRouter();
+
+  const columns = useMemo(
+    () => [
+      {
+        title: "Brand",
+        dataIndex: "brand",
+        key: "brand",
+      },
+      {
+        title: "Model",
+        dataIndex: "model",
+        key: "model",
+      },
+      {
+        title: "Vehicle Type",
+        dataIndex: "type",
+        key: "type",
+      },
+      {
+        title: "Distance",
+        dataIndex: "distance",
+        key: "distance",
+      },
+      {
+        title: "",
+        key: "open",
+        render: (text: string, record: Vehicle) => (
+          <button onClick={() => handleOpen(record.id)}>Open</button>
+        ),
+      },
+      {
+        title: "",
+        key: "delete",
+        render: (text: string, record: Vehicle) => (
+          <button onClick={() => handleDelete(record.id)}>Delete</button>
+        ),
+      },
+    ],
+    []
+  );
 
   const handleDelete = async (id: string) => {
-    try {
-      // await deleteVehicle(id);
-      // You might want to add some state management here to update the UI
-      // For example, removing the deleted vehicle from the list
-    } catch (error) {
-      console.error("Error deleting vehicle:", error);
-    }
+    //  push(`/vehicles/`)
   };
 
   const handleOpen = async (id: string) => {
-    try {
-      // await deleteVehicle(id);
-      // You might want to add some state management here to update the UI
-      // For example, removing the deleted vehicle from the list
-    } catch (error) {
-      console.error("Error deleting vehicle:", error);
-    }
+    push(`/vehicles/my-vehicles/${id}`);
   };
 
   return (

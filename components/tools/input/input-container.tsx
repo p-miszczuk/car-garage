@@ -13,6 +13,7 @@ interface Props {
   id: string;
   isAuthForm?: boolean;
   type: string;
+  placeholder?: string;
 }
 
 type InputContainerProps = InputViewProps & Readonly<Props>;
@@ -25,9 +26,10 @@ const InputContainer = ({
   required,
   type,
   isAuthForm,
+  placeholder,
 }: InputContainerProps) => {
   return (
-    <div className="flex flex-col mb-5 w-full" aria-label={label}>
+    <div className="flex flex-col w-full" aria-label={label}>
       <label htmlFor={id}>{label}</label>
       <InputView
         id={id}
@@ -35,6 +37,7 @@ const InputContainer = ({
         register={register}
         required={required}
         isAuthForm={isAuthForm}
+        placeholder={placeholder}
       />
       {error && <Message message={error} />}
     </div>

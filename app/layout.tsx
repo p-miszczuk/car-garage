@@ -11,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
-      <body className="h-full md:px-10 px-5 py-3">
+      <body className="h-full max-w-screen-xl mx-auto md:px-10 px-5 py-3">
         <AuthProviders>
           <Header />
           {children}

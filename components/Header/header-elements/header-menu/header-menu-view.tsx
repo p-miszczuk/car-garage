@@ -8,11 +8,11 @@ import Button from "@/components/tools/button";
 type Props = {
   auth: boolean;
   path: string;
-  title: string;
+  text: string;
   type?: string;
 };
 
-const HeaderMenuView = ({ auth, path, title, type }: Props) => {
+const HeaderMenuView = ({ auth, path, text, type }: Props) => {
   const { status } = useSession();
 
   const handleClickButton = () => {
@@ -25,10 +25,10 @@ const HeaderMenuView = ({ auth, path, title, type }: Props) => {
     <li className="flex">
       {isAuth === auth ? (
         type === "button" ? (
-          <Button onClick={handleClickButton} title={title} bold />
+          <Button onClick={handleClickButton} text={text} bold />
         ) : (
           <Link href={path} className="font-bold">
-            {title}{" "}
+            {text}
           </Link>
         )
       ) : null}
