@@ -1,6 +1,5 @@
 import { validateField } from "@/utils";
 import { UseFormRegister } from "react-hook-form";
-import { FormValues } from "../../form/form-view";
 
 type InputView = {
   id: string;

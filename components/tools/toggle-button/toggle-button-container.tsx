@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ToggleButtonView, { ToggleButtonViewData } from "./toggle-button-view";
-import { getField } from "@/components/vehicles-details/vehicle-details-modal/modal-view";
 import { Control, FieldValues, UseFormRegister } from "react-hook-form";
+import { getField } from "../utils";
 
 type ToggleButtonContainerProps = Omit<
   ToggleButtonViewData,

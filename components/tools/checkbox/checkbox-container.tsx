@@ -1,7 +1,6 @@
 import { Control, FieldValues, UseFormRegister } from "react-hook-form";
 import CheckboxView from "./checkbox-view";
-import { getField } from "@/components/vehicles-details/vehicle-details-modal/modal-view";
-
+import { getField } from "../utils";
 type CheckboxContainerProps = {
   register: UseFormRegister<FieldValues>;
   unregister?: (name: string) => void;
@@ -15,7 +14,6 @@ type CheckboxContainerProps = {
 
 const CheckboxContainer = ({
   register,
-  unregister,
   id,
   label,
   checked,

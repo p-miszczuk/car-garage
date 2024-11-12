@@ -1,8 +1,6 @@
 import Button from "@/components/tools/button";
-import Checkbox from "@/components/tools/checkbox";
-import Input from "@/components/tools/input";
-import Select from "@/components/tools/selects/select";
-import ToggleButtonContainer from "@/components/tools/toggle-button";
+import { getField } from "@/components/tools/utils";
+import { useMemo } from "react";
 import {
   useForm,
   SubmitHandler,
@@ -26,78 +24,6 @@ interface FormValues {
   [key: string]: string | number;
 }
 
-export const getField = ({
-  field,
-  register,
-  unregister,
-  control,
-}: GetField) => {
-  if (!field) return null;
-
-  switch (field.type) {
-    case "toggle":
-      return (
-        <ToggleButtonContainer
-          key={field.name}
-          additionalFields={field.additionalFields}
-          name={field.name}
-          options={field.options}
-          register={register}
-          unregister={unregister}
-          control={control}
-        />
-      );
-    case "text":
-    case "number":
-    case "date":
-    case "time":
-      return (
-        <Input
-          register={register}
-          key={field.name}
-          type={field.type}
-          id={field.name}
-          label={field.label}
-          placeholder={field.placeholder}
-          required={field.required}
-          error=""
-        />
-      );
-    case "checkbox":
-      return (
-        <Checkbox
-          register={register}
-          key={field.name}
-          id={field.name}
-          label={field.label}
-          checked={field.isSelected}
-          additionalFields={field.fields}
-          control={control}
-        />
-      );
-    case "select":
-      return (
-        <Select
-          key={field.name}
-          id={field.name}
-          placeholder={field.placeholder}
-          control={control}
-          options={field.options}
-        />
-      );
-    case "group":
-      return (
-        <div className="flex gap-4">
-          {field?.fields?.map((field: any) =>
-            getField({ field, register, unregister, control })
-          )}
-        </div>
-      );
-    default:
-      return null;
-  }
-};
-
 const ModalView = ({ formFields, selectedOption }: ModalViewProps) => {
   const {
     control,
@@ -106,20 +32,28 @@ const ModalView = ({ formFields, selectedOption }: ModalViewProps) => {
     setError,
     formState: { errors },
     unregister,
+    reset,
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log("🚀 ~ onSubmit ~ data:", data);
   };
 
+  const fields = useMemo(() => {
+    reset();
+    return (
+      formFields?.map((field: Record<string, any>) =>
+        getField({ field, register, unregister, control })
+      ) || null
+    );
+  }, [formFields]);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-fields-wrapper mb-5 flex flex-col gap-4">
-        {formFields?.map((field: any) =>
-          getField({ field, register, unregister, control })
-        ) || null}
+        {fields}
       </div>
-      {!!formFields ? (
+      {!!fields ? (
         <Button
           type="submit"
           text="Add"
