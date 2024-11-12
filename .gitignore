@@ -43,3 +43,4 @@ prisma/seed.ts
 prisma/migrations/migrations.json
 prisma/migrations/migrations.json
 prisma/migrations/migrations.json
+prisma/dev.db

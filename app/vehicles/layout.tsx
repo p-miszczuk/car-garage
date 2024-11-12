@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import ProtectedRoute from "@/components/protected-route";
 
 type AuthLayoutProps = {
   children: React.ReactNode;
@@ -8,12 +8,10 @@ type AuthLayoutProps = {
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
   //TODO lang description
-  const { status } = useSession();
-  const isLoading = status === "loading";
 
   return (
     <main className="w-md-100 min-h-[calc(100%-8rem)] p-10">
-      {isLoading ? null : children}
+      <ProtectedRoute>{children}</ProtectedRoute>
     </main>
   );
 };
