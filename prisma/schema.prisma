@@ -60,4 +60,5 @@ model Vehicle {
   model    String
   type     String
   distance Int
+  fuel     String
 }
