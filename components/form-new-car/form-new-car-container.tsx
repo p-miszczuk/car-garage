@@ -2,14 +2,10 @@
 
 import { useParams } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
-
 import _get from "lodash/get";
-import newVehicle from "../../shares/new-vehicles/index.json";
 import FormNewCarView from "./form-new-car-view";
 import SubmitButton from "../form/form-button";
-import { addNewVehicle } from "@/lib/new-car-actions";
-
-const { options } = newVehicle;
+import { useFetch } from "../../lib/hooks/useFetch";
 
 export type FormValues = {
   vehicleType: string;
@@ -21,6 +17,7 @@ export type FormValues = {
 
 const FormNewCarContainer = () => {
   const params = useParams();
+  const { fetchData } = useFetch();
   const {
     register,
     handleSubmit,
@@ -39,7 +36,12 @@ const FormNewCarContainer = () => {
       fuel: data.fuel,
     };
 
-    const result = await addNewVehicle(formData);
+    const result = await fetchData({
+      url: `vehicles/add-vehicle`,
+      method: "POST",
+      body: { ...formData },
+    });
+    console.log(result);
   };
 
   return (

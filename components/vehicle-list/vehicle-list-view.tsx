@@ -1,11 +1,15 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useCallback, useMemo, useState } from "react";
+import { useFetch } from "@/lib/hooks/useFetch";
 import Table from "rc-table";
 import _omit from "lodash/omit";
+import CustomModal from "../tools/modal";
+import Button from "../tools/button";
+import vehiclesTableData from "@/shares/vehicles/vehicles-table/index.json";
 import "./styles.scss";
-import { handleFormAction } from "@/lib/form-actions";
-import { useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useVehiclesList } from "./useVehiclesList";
 
 interface Vehicle {
   id: string;
@@ -13,73 +17,68 @@ interface Vehicle {
   model: string;
   type: string;
   distance: number;
+  fuel: string;
 }
 
 interface VehicleListViewData {
-  vehicles: Array<Readonly<Vehicle>>;
+  readonly vehicles: Array<Readonly<Vehicle>>;
+  readonly refresh: (id: string) => void;
 }
 
-const VehicleListView = ({ vehicles = [] }: VehicleListViewData) => {
-  const { push } = useRouter();
+const { vehiclesTableColumns } = vehiclesTableData;
+
+const VehicleListView = ({ vehicles = [], refresh }: VehicleListViewData) => {
+  const {
+    vehicleId,
+    handleDelete,
+    handleOpen,
+    handleOpenConfirmModal,
+    handleCloseModal,
+  } = useVehiclesList({ refresh });
 
   const columns = useMemo(
     () => [
-      {
-        title: "Brand",
-        dataIndex: "brand",
-        key: "brand",
-      },
-      {
-        title: "Model",
-        dataIndex: "model",
-        key: "model",
-      },
-      {
-        title: "Vehicle Type",
-        dataIndex: "type",
-        key: "type",
-      },
-      {
-        title: "Distance",
-        dataIndex: "distance",
-        key: "distance",
-      },
+      ...vehiclesTableColumns,
       {
         title: "",
         key: "open",
-        render: (text: string, record: Vehicle) => (
-          <button onClick={() => handleOpen(record.id)}>Open</button>
+        render: (_: string, record: Vehicle) => (
+          <Button onClick={handleOpen(record.id)} text="Open" />
         ),
       },
       {
         title: "",
         key: "delete",
-        render: (text: string, record: Vehicle) => (
-          <button onClick={() => handleDelete(record.id)}>Delete</button>
+        render: (_: string, record: Vehicle) => (
+          <Button onClick={handleOpenConfirmModal(record.id)} text="Delete" />
         ),
       },
     ],
-    []
+    [handleDelete, handleOpen]
   );
 
-  const handleDelete = async (id: string) => {
-    //  push(`/vehicles/`)
-  };
-
-  const handleOpen = async (id: string) => {
-    push(`/vehicles/my-vehicles/${id}`);
-  };
-
   return (
-    <Table
-      columns={columns}
-      data={vehicles}
-      rowKey="id"
-      className="w-full"
-      rowClassName="hover:bg-gray-100 border-b border-gray-200"
-      tableLayout="fixed"
-      prefixCls="rc-table"
-    />
+    <>
+      <Table
+        columns={columns}
+        data={vehicles}
+        rowKey="id"
+        className="w-full"
+        rowClassName="hover:bg-gray-100 border-b border-gray-200 h-8"
+        tableLayout="fixed"
+        prefixCls="rc-table"
+      />
+      {vehicleId ? (
+        <CustomModal
+          onClose={handleCloseModal}
+          action={handleDelete}
+          name="confirm"
+          width={320}
+          height={170}
+          text="Do you want to remove this vehicle permanently?"
+        />
+      ) : null}
+    </>
   );
 };
 

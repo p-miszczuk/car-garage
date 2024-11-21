@@ -3,27 +3,21 @@
 import useSWR from "swr";
 import VehicleDetails from ".";
 import VehiclesDetailsView from "./vehicle-details-view";
+import { fetcher } from "@/utils";
 
 interface VehicleDetails {
   vehicleId: string;
 }
 
-const fetcher = async (url: string) => {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch vehicle details");
-  }
-
-  return response.json();
-};
-
 const VehicleDetailsContainer = ({
   vehicleId,
 }: VehicleDetails): JSX.Element => {
   const { data, error } = useSWR(
-    `http://localhost:8000/api/vehicles?id=${vehicleId}`,
-    fetcher
+    `http://localhost:8000/api/vehicles/get-vehicle?id=${vehicleId}`,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+    }
   );
 
   const isLoading = !data && !error;
