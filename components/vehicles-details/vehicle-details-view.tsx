@@ -7,6 +7,7 @@ export interface VehicleDetailsViewData {
   model: string;
   type: string;
   distance: number;
+  fuel: string;
 }
 
 interface VehicleDetailsViewProps {

@@ -2,10 +2,10 @@
 
 import Table from "rc-table";
 import _omit from "lodash/omit";
-import "./styles.scss";
-import { handleFormAction } from "@/lib/form-actions";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
+import { useFetch } from "@/lib/hooks/useFetch";
+import "./styles.scss";
 
 interface Vehicle {
   id: string;
@@ -13,14 +13,17 @@ interface Vehicle {
   model: string;
   type: string;
   distance: number;
+  fuel: string;
 }
 
 interface VehicleListViewData {
-  vehicles: Array<Readonly<Vehicle>>;
+  readonly vehicles: Array<Readonly<Vehicle>>;
+  readonly refresh: (id: string) => void;
 }
 
-const VehicleListView = ({ vehicles = [] }: VehicleListViewData) => {
-  const { push } = useRouter();
+const VehicleListView = ({ vehicles = [], refresh }: VehicleListViewData) => {
+  const data = useRouter();
+  const { fetchData } = useFetch();
 
   const columns = useMemo(
     () => [
@@ -45,6 +48,11 @@ const VehicleListView = ({ vehicles = [] }: VehicleListViewData) => {
         key: "distance",
       },
       {
+        title: "Fuel",
+        dataIndex: "fuel",
+        key: "fuel",
+      },
+      {
         title: "",
         key: "open",
         render: (text: string, record: Vehicle) => (
@@ -63,11 +71,19 @@ const VehicleListView = ({ vehicles = [] }: VehicleListViewData) => {
   );
 
   const handleDelete = async (id: string) => {
-    //  push(`/vehicles/`)
+    try {
+      const { vehicle } = await fetchData({
+        url: `/vehicles/delete-vehicle?id=${id}`,
+        method: "DELETE",
+      });
+      refresh(vehicle?.id);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleOpen = async (id: string) => {
-    push(`/vehicles/my-vehicles/${id}`);
+    data.push(`/vehicles/my-vehicles/${id}`);
   };
 
   return (

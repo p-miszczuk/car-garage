@@ -63,3 +63,13 @@ export const validateFormField = ({ field, value }: Validate): boolean => {
 
   return reg?.test(value);
 };
+
+export const fetcher = async (url: string) => {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch vehicle details");
+  }
+
+  return response.json();
+};

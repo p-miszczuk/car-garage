@@ -8,13 +8,16 @@ import {
 import { useSession } from "next-auth/react";
 import { USER_AUTHENTICATED } from "../header/index.test";
 import { useParams, useRouter } from "next/navigation";
-import { addNewVehicle } from "@/lib/new-car-actions";
+import { useFetch } from "@/lib/hooks/useFetch";
 import VehicleNav from "@/app/vehicles/add-new-vehicle/vehicle-nav";
 import boxesMenu from "../../shares/boxes-menu/index.json";
 import Vehicles from "@/app/vehicles/page";
 import FormNewCarContainer from "@/components/form-new-car/form-new-car-container";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
+
+// Mock useFetch to avoid actual API calls
+jest.mock("../../lib/hooks/useFetch");
 
 jest.mock("next-auth/react");
 const useSessionMocked = jest.mocked(useSession);
@@ -24,21 +27,17 @@ jest.mock("next/navigation", () => ({
   useParams: jest.fn(),
 }));
 
-jest.mock("../../lib/new-car-actions", () => ({
-  addNewVehicle: jest.fn(),
-}));
-
 const testCases = boxesMenu.boxes.filter(
   ({ id }) => id === "my-vehicles" || id === "add-new-vehicle"
 );
 
 describe("Testing vehicles page", () => {
-  const pushMock = jest.fn();
+  const mockFetchData = jest.fn();
   (useParams as jest.Mock).mockReturnValue({ "vehicle-type": "Car" });
 
   beforeEach(() => {
     jest.clearAllMocks();
-    (useRouter as jest.Mock).mockReturnValue({ push: pushMock });
+    (useFetch as jest.Mock).mockReturnValue({ fetchData: mockFetchData });
     useSessionMocked.mockReturnValue({
       ...USER_AUTHENTICATED,
       update: jest.fn(),
@@ -121,14 +120,16 @@ describe("Testing vehicles page", () => {
 
     await user.click(screen.getByRole("button", { name: "Submit" }));
 
-    await waitFor(() => {
-      expect(addNewVehicle).toHaveBeenCalledWith({
+    expect(mockFetchData).toHaveBeenCalledWith({
+      url: "vehicles/add-vehicle",
+      method: "POST",
+      body: {
+        vehicleType: "C",
         brand: "Toyota",
+        model: "Corolla",
         distance: 10000,
         fuel: "benzin",
-        model: "Corolla",
-        vehicleType: "C",
-      });
+      },
     });
   });
 });
