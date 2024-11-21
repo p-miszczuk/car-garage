@@ -41,7 +41,7 @@ const FormNewCarContainer = () => {
       method: "POST",
       body: { ...formData },
     });
-    console.log("🚀 ~ FormNewCarContainer ~ result:", result);
+    console.log(result);
   };
 
   return (

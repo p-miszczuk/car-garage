@@ -14,7 +14,10 @@ const VehicleDetailsContainer = ({
 }: VehicleDetails): JSX.Element => {
   const { data, error } = useSWR(
     `http://localhost:8000/api/vehicles/get-vehicle?id=${vehicleId}`,
-    fetcher
+    fetcher,
+    {
+      revalidateOnFocus: false,
+    }
   );
 
   const isLoading = !data && !error;

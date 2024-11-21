@@ -8,9 +8,10 @@ import { VehicleDetailsViewData } from "../vehicles-details/vehicle-details-view
 export const GET_VEHICLES_URL = "http://localhost:8000/api/vehicles";
 
 const VehicleListContainer = () => {
-  const { data, mutate } = useSWR(GET_VEHICLES_URL, fetcher);
-
-  const handleRefresh = (id: string) => {
+  const { data, mutate } = useSWR(GET_VEHICLES_URL, fetcher, {
+    revalidateOnFocus: false,
+  });
+  const handleRefresh = (id: string): void => {
     mutate({
       ...data?.vehicles.filter(
         (vehicle: VehicleDetailsViewData) => vehicle.id !== id
