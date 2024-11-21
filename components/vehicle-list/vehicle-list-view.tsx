@@ -1,12 +1,15 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useCallback, useMemo, useState } from "react";
+import { useFetch } from "@/lib/hooks/useFetch";
 import Table from "rc-table";
 import _omit from "lodash/omit";
-import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
-import { useFetch } from "@/lib/hooks/useFetch";
-import "./styles.scss";
 import CustomModal from "../tools/modal";
+import Button from "../tools/button";
+import vehiclesTableData from "@/shares/vehicles/vehicles-table/index.json";
+import "./styles.scss";
+import { useVehiclesList } from "./useVehiclesList";
 
 interface Vehicle {
   id: string;
@@ -22,78 +25,32 @@ interface VehicleListViewData {
   readonly refresh: (id: string) => void;
 }
 
+const { vehiclesTableColumns } = vehiclesTableData;
+
 const VehicleListView = ({ vehicles = [], refresh }: VehicleListViewData) => {
-  const [vehicleId, setVehicleId] = useState<string>("");
-  const data = useRouter();
-  const { fetchData } = useFetch();
-
-  const handleDelete = async (): Promise<void> => {
-    try {
-      const { vehicle } = await fetchData({
-        url: `/vehicles/delete-vehicle?id=${vehicleId}`,
-        method: "DELETE",
-      });
-      refresh(vehicle?.id);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setVehicleId("");
-    }
-  };
-
-  const handleOpen = async (id: string) => {
-    data.push(`/vehicles/my-vehicles/${id}`);
-  };
-
-  const handleOpenConfirmModal = (id: string) => {
-    setVehicleId(id);
-  };
-
-  const handleCloseModal = () => {
-    setVehicleId("");
-  };
+  const {
+    vehicleId,
+    handleDelete,
+    handleOpen,
+    handleOpenConfirmModal,
+    handleCloseModal,
+  } = useVehiclesList({ refresh });
 
   const columns = useMemo(
     () => [
-      {
-        title: "Brand",
-        dataIndex: "brand",
-        key: "brand",
-      },
-      {
-        title: "Model",
-        dataIndex: "model",
-        key: "model",
-      },
-      {
-        title: "Vehicle Type",
-        dataIndex: "type",
-        key: "type",
-      },
-      {
-        title: "Distance",
-        dataIndex: "distance",
-        key: "distance",
-      },
-      {
-        title: "Fuel",
-        dataIndex: "fuel",
-        key: "fuel",
-      },
+      ...vehiclesTableColumns,
       {
         title: "",
         key: "open",
-        render: (text: string, record: Vehicle) => (
-          <button onClick={() => handleOpen(record.id)}>Open</button>
+        render: (_: string, record: Vehicle) => (
+          <Button onClick={handleOpen(record.id)} text="Open" />
         ),
       },
       {
         title: "",
         key: "delete",
-        render: (text: string, record: Vehicle) => (
-          <button onClick={() => handleOpenConfirmModal(record.id)}>
-            Delete
-          </button>
+        render: (_: string, record: Vehicle) => (
+          <Button onClick={handleOpenConfirmModal(record.id)} text="Delete" />
         ),
       },
     ],
@@ -107,7 +64,7 @@ const VehicleListView = ({ vehicles = [], refresh }: VehicleListViewData) => {
         data={vehicles}
         rowKey="id"
         className="w-full"
-        rowClassName="hover:bg-gray-100 border-b border-gray-200"
+        rowClassName="hover:bg-gray-100 border-b border-gray-200 h-8"
         tableLayout="fixed"
         prefixCls="rc-table"
       />

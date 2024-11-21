@@ -1,0 +1,29 @@
+{
+  "vehiclesTableColumns": [
+    {
+      "title": "Brand",
+      "dataIndex": "brand",
+      "key": "brand"
+    },
+    {
+      "title": "Model",
+      "dataIndex": "model",
+      "key": "model"
+    },
+    {
+      "title": "Vehicle Type",
+      "dataIndex": "type",
+      "key": "type"
+    },
+    {
+      "title": "Distance",
+      "dataIndex": "distance",
+      "key": "distance"
+    },
+    {
+      "title": "Fuel",
+      "dataIndex": "fuel",
+      "key": "fuel"
+    }
+  ]
+}
