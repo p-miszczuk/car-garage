@@ -1,15 +1,13 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
-import { useFetch } from "@/lib/hooks/useFetch";
-import Table from "rc-table";
+import { useMemo } from "react";
+import { useVehiclesList } from "./useVehiclesList";
 import _omit from "lodash/omit";
+import Table from "rc-table";
 import CustomModal from "../tools/modal";
 import Button from "../tools/button";
 import vehiclesTableData from "@/shares/vehicles/vehicles-table/index.json";
 import "./styles.scss";
-import { useVehiclesList } from "./useVehiclesList";
 
 interface Vehicle {
   id: string;

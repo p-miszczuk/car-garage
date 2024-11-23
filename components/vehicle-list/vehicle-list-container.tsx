@@ -1,9 +1,9 @@
 "use client";
 
-import useSWR from "swr";
-import VehicleListView from "./vehicle-list-view";
 import { fetcher } from "@/utils";
 import { VehicleDetailsViewData } from "../vehicles-details/vehicle-details-view";
+import useSWR from "swr";
+import VehicleListView from "./vehicle-list-view";
 
 export const GET_VEHICLES_URL = "http://localhost:8000/api/vehicles";
 
@@ -11,6 +11,7 @@ const VehicleListContainer = () => {
   const { data, mutate } = useSWR(GET_VEHICLES_URL, fetcher, {
     revalidateOnFocus: false,
   });
+
   const handleRefresh = (id: string): void => {
     mutate({
       ...data?.vehicles.filter(

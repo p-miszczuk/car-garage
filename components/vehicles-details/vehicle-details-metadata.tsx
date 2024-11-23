@@ -1,5 +1,14 @@
 import { VehicleDetailsViewData } from "./vehicle-details-view";
 
+const displayMetadataElement = (label: string, value: string) => (
+  <div>
+    <em>
+      <strong className="min-w-32 inline-block">{label}: </strong>
+    </em>
+    <span>{value}</span>
+  </div>
+);
+
 const VehicleDetailsMetadata = ({
   brand,
   model,
@@ -8,30 +17,10 @@ const VehicleDetailsMetadata = ({
 }: Omit<VehicleDetailsViewData, "id">): JSX.Element => {
   return (
     <div className="vehicle-metadata flex flex-col text-lg">
-      <div>
-        <em>
-          <strong>Type: </strong>
-        </em>
-        <span>{type}</span>
-      </div>
-      <div>
-        <em>
-          <strong>Brand: </strong>
-        </em>
-        <span>{brand}</span>
-      </div>
-      <div>
-        <em>
-          <strong>Model: </strong>
-        </em>
-        <span>{model}</span>
-      </div>
-      <div>
-        <em>
-          <strong>Distance: </strong>
-        </em>
-        <span>{distance} km</span>
-      </div>
+      {displayMetadataElement("Type", type)}
+      {displayMetadataElement("Brand", brand)}
+      {displayMetadataElement("Model", model)}
+      {displayMetadataElement("Distance", `${distance} km`)}
     </div>
   );
 };
