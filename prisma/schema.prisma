@@ -44,6 +44,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  vehicles      Vehicle[] @relation("UserVehicles")
 }
 
 model VerificationToken {
@@ -61,4 +62,6 @@ model Vehicle {
   type     String
   distance Int
   fuel     String
+  userId   String
+  user     User    @relation("UserVehicles", fields: [userId], references: [id], onDelete: Cascade) // Relacja do modelu User
 }
