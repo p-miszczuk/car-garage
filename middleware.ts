@@ -7,7 +7,11 @@ const secret = process.env.NEXTAUTH_SECRET;
 export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
 
-  if (pathname.startsWith("/api") && !pathname.startsWith("/api/auth")) {
+  if (
+    pathname.startsWith("/api") &&
+    !pathname.startsWith("/api/auth") &&
+    !pathname.startsWith("/api/register")
+  ) {
     const token = await getToken({ req, secret });
 
     if (!token) {

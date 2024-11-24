@@ -1,11 +1,9 @@
 import prisma from "@/lib/prisma";
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
+// import GoogleProvider from "next-auth/providers/google";
 import * as bcrypt from "bcrypt";
 import NextAuth from "next-auth/next";
-
-import { use } from "react";
 import { User } from "@prisma/client";
 
 export const authOptions: AuthOptions = {
@@ -69,7 +67,7 @@ export const authOptions: AuthOptions = {
         //   throw new Error("Please verify your email first!");
 
         const { password, ...userWithoutPass } = user;
-        return userWithoutPass;
+        return { ...userWithoutPass };
       },
     }),
   ],

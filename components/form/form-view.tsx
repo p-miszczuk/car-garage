@@ -5,9 +5,9 @@ import { getMessage } from "@/utils";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { signIn, SignInResponse } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { registerUser } from "@/lib/auth-actions";
 import Input from "../tools/input";
 import SubmitButton from "./form-button";
+import { useFetch } from "@/lib/hooks/useFetch";
 
 export type FormValues = {
   login: string;
@@ -23,6 +23,7 @@ const isId = (resp: unknown) => {
 
 const FormView = ({ type = "login" }: { type: string }): JSX.Element => {
   const router = useRouter();
+  const { fetchData } = useFetch();
 
   const {
     register,
@@ -42,8 +43,12 @@ const FormView = ({ type = "login" }: { type: string }): JSX.Element => {
       }
 
       try {
-        const resp: unknown = await registerUser(data);
-        isId(resp) && router.push("/auth");
+        await fetchData({
+          url: "register",
+          method: "POST",
+          body: data,
+        });
+        router.push("/auth");
       } catch (err) {
         setError("confirm", {
           type: "validation",
