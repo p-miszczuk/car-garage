@@ -2,6 +2,7 @@ import { useState } from "react";
 import ToggleButtonView, { ToggleButtonViewData } from "./toggle-button-view";
 import { Control, FieldValues, UseFormRegister } from "react-hook-form";
 import { getField } from "../utils";
+import Input from "../input";
 
 type ToggleButtonContainerProps = Omit<
   ToggleButtonViewData,
@@ -29,7 +30,7 @@ const ToggleButtonContainer = ({
   };
 
   return (
-    <div className="flex flex-col gap-2 mb-5">
+    <div className="flex flex-col gap-2 mb-5" key={selected}>
       <ToggleButtonView
         key={name}
         name={name}
@@ -37,6 +38,7 @@ const ToggleButtonContainer = ({
         selected={selected}
         setSelected={handleChangeSelected}
       />
+      <Input type="hidden" register={register} id={selected} error="" />
       {additionalFields
         .filter(({ name }) => name === selected)
         .map((item) =>

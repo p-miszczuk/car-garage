@@ -82,7 +82,7 @@
                 {
                   "type": "number",
                   "placeholder": "Distance",
-                  "name": "distance"
+                  "name": "distance_once"
                 }
               ]
             },
@@ -113,7 +113,7 @@
                 {
                   "type": "number",
                   "placeholder": "Distance",
-                  "name": "distance"
+                  "name": "distance_repeat"
                 }
               ]
             },

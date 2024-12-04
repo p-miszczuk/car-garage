@@ -7,12 +7,13 @@ import Message from "../../form/form-message";
 
 interface Props {
   error: string;
-  label: string;
+  label?: string;
   register: UseFormRegister<any>;
-  required: boolean;
+  required?: boolean;
   id: string;
   isAuthForm?: boolean;
   type: string;
+  defaultValue?: string;
   placeholder?: string;
 }
 
@@ -23,7 +24,7 @@ const InputContainer = ({
   id,
   label,
   register,
-  required,
+  required = false,
   type,
   isAuthForm,
   placeholder,
