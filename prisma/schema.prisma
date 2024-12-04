@@ -56,12 +56,30 @@ model VerificationToken {
 }
 
 model Vehicle {
-  id       String @id @default(uuid())
+  id       String     @id @default(uuid())
   brand    String
   model    String
   type     String
   distance Int
   fuel     String
   userId   String
-  user     User    @relation("UserVehicles", fields: [userId], references: [id], onDelete: Cascade) // Relacja do modelu User
+  user     User       @relation("UserVehicles", fields: [userId], references: [id], onDelete: Cascade)
+  reminder Reminder[]
+}
+
+model Reminder {
+  id              String    @id @default(cuid())
+  vehicleId       String
+  vehicle         Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date            DateTime?
+  history_type    String
+  reminder_type   String
+  reminder_repeat String
+  reminder_name   String
+  repeat_km       Int?
+  repeat_number   Int?
+  repeat_period   String?
+  notes           String
+  one_time_km     Int?
+  one_time_date   String?
 }

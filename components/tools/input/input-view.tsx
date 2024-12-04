@@ -4,7 +4,7 @@ import { UseFormRegister } from "react-hook-form";
 type InputView = {
   id: string;
   register: UseFormRegister<any>;
-  required: boolean;
+  required?: boolean;
   type: string;
   isAuthForm?: boolean;
   placeholder?: string;
