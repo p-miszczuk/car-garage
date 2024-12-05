@@ -2,10 +2,10 @@
 
 import { useParams } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useFetch } from "../../lib/hooks/useFetch";
 import _get from "lodash/get";
 import FormNewCarView from "./form-new-car-view";
-import SubmitButton from "../form/form-button";
-import { useFetch } from "../../lib/hooks/useFetch";
+import SubmitButton from "../auth-form/form-button";
 
 export type FormValues = {
   vehicleType: string;

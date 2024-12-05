@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse, NextRequest } from "next/server";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
+
 const prisma = new PrismaClient();
 
 interface SessionUser {
@@ -42,6 +43,7 @@ export async function POST(
       { status: 201 }
     );
   } catch (error: any) {
+    console.log("🚀 ~ error:", error);
     return NextResponse.json(
       { message: error?.message || "An unexpected error occurred" },
       { status: 401 }
