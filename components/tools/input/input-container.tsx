@@ -2,8 +2,8 @@
 
 import InputView, { InputViewProps } from "./input-view";
 import { UseFormRegister } from "react-hook-form";
-import { FormValues } from "../../form/form-view";
-import Message from "../../form/form-message";
+import { FormValues } from "../../auth-form/form-view";
+import Message from "../../auth-form/form-message";
 
 interface Props {
   error: string;
@@ -23,23 +23,12 @@ const InputContainer = ({
   error = "",
   id,
   label,
-  register,
-  required = false,
-  type,
-  isAuthForm,
-  placeholder,
+  ...rest
 }: InputContainerProps) => {
   return (
     <div className="flex flex-col w-full" aria-label={label}>
       <label htmlFor={id}>{label}</label>
-      <InputView
-        id={id}
-        type={type}
-        register={register}
-        required={required}
-        isAuthForm={isAuthForm}
-        placeholder={placeholder}
-      />
+      <InputView {...rest} id={id} />
       {error && <Message message={error} />}
     </div>
   );

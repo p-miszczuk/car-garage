@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ToggleButtonView, { ToggleButtonViewData } from "./toggle-button-view";
-import { Control, FieldValues, UseFormRegister } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { getField } from "../utils";
 import Input from "../input";
 
@@ -9,19 +9,14 @@ type ToggleButtonContainerProps = Omit<
   "selected" | "setSelected"
 > & {
   additionalFields: Array<Record<string, any>>;
-  register: UseFormRegister<FieldValues>;
-  unregister?: (name: string) => void;
-  control?: Control<FieldValues, undefined>;
 };
 
 const ToggleButtonContainer = ({
   name,
   options,
   additionalFields,
-  register,
-  unregister,
-  control,
 }: ToggleButtonContainerProps) => {
+  const { register, unregister, control } = useFormContext();
   const [selected, setSelected] = useState(options[0].value);
 
   const handleChangeSelected = (option: string) => {

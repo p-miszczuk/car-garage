@@ -27,9 +27,6 @@ export const getField = ({
           additionalFields={field.additionalFields}
           name={field.name}
           options={field.options}
-          register={register}
-          unregister={unregister}
-          control={control}
         />
       );
     case "text":
