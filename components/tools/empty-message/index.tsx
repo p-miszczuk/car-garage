@@ -14,6 +14,7 @@ const EmptyMessage = ({ type, text }: ErrorMessageProps) => {
         "text-red-700": type === "error",
         "text-yellow-400": type === "warning",
       })}
+      data-testid="empty-message"
     >
       {text}
     </p>
