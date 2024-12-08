@@ -14,7 +14,7 @@ const ConfirmModalView = ({ action, closeModal }: ConfirmModalViewProps) => {
         customClass="bg-green-600 w-1/2 py-1 rounded-md text-white"
       />
       <Button
-        text="Remove"
+        text="Confirm"
         onClick={action}
         customClass="bg-red-600 w-1/2 py-1 rounded-md text-white"
       />
