@@ -27,7 +27,9 @@ const InputContainer = ({
 }: InputContainerProps) => {
   return (
     <div className="flex flex-col w-full" aria-label={label}>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} data-testid="input-label">
+        {label}
+      </label>
       <InputView {...rest} id={id} />
       {error && <Message message={error} />}
     </div>

@@ -13,7 +13,9 @@ const ConfirmModalContainer = ({
 }: ConfirmModalContainerProps) => {
   return (
     <div className="flex flex-col justify-between h-full">
-      <p className="text-center px-4">{text}</p>
+      <p className="text-center px-4" data-testid="confirm-modal-info">
+        {text}
+      </p>
       <ConfirmModalView action={action} closeModal={closeModal} />
     </div>
   );

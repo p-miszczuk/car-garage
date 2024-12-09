@@ -7,7 +7,7 @@ type Props = {
   customClass?: string;
   onClick: (value?: any) => void;
   text: string;
-  type?: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset";
 };
 
 type ButtonProps = Readonly<Props>;
@@ -25,7 +25,12 @@ const Button = ({
   });
 
   return (
-    <button type={type} onClick={onClick} className={classNames}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={classNames}
+      data-testid="button"
+    >
       {text}
     </button>
   );
