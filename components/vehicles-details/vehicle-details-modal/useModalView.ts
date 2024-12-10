@@ -1,22 +1,9 @@
 import { useFetch } from "@/lib/hooks/useFetch";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
-import {
-  Control,
-  FieldValues,
-  SubmitHandler,
-  useForm,
-  UseFormRegister,
-} from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { ModalViewData } from "./modal-view";
 import { getField } from "@/components/tools/utils";
-
-interface GetField {
-  field: Record<string, any>;
-  register: UseFormRegister<FieldValues>;
-  unregister?: (name: string) => void;
-  control?: Control<FieldValues, undefined>;
-}
 
 interface FormValues {
   [key: string]: string | number;
@@ -30,8 +17,15 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
   const methods = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    console.log("🚀 ~ constonSubmit:SubmitHandler<FormValues>= ~ data:", data);
     try {
-      let dataToSave = Object.assign({}, { vehicleId });
+      let dataToSave = Object.assign(
+        {},
+        {
+          selectedOption,
+          vehicleId,
+        }
+      );
       if (selectedOption === "reminder") {
         const reminderType = data.service ? "Service" : "Expense";
         const reminderName =
@@ -71,15 +65,36 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
             }),
           });
         }
+      } else if (selectedOption === "route") {
+        const { odometer_start, odometer_end, total_cost, ...rest } = data;
+        dataToSave = Object.assign(dataToSave, {
+          ...data,
+          odometer_start: odometer_start ? Number(odometer_start) : null,
+          odometer_end: odometer_end ? Number(odometer_end) : null,
+          total_cost: total_cost ? Number(total_cost) : null,
+        });
+
+        if ((odometer_start || odometer_start === 0) && odometer_end) {
+          if (odometer_start > odometer_end) {
+            methods.setError("odometer_end", {
+              type: "manual",
+              message: "The value should be bigger than odometer start",
+            });
+          }
+        }
       }
 
+      console.log(
+        "🚀 ~ constonSubmit:SubmitHandler<FormValues>= ~ dataToSave:",
+        dataToSave
+      );
       await fetchData({
         url: "vehicles/add-history",
         method: "POST",
         body: dataToSave,
       });
       // TODO: display toast
-      methods.reset();
+      // methods.reset();
     } catch (error) {
       console.log("🚀 ~ onSubmit ~ error:", error);
     }
@@ -92,7 +107,7 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
         return getField({ field, register, unregister, control });
       }) || null
     );
-  }, [formFields, getField]);
+  }, [formFields, getField, methods]);
 
   return { fields, methods, onSubmit };
 };

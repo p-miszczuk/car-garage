@@ -65,13 +65,31 @@ model Vehicle {
   userId   String
   user     User       @relation("UserVehicles", fields: [userId], references: [id], onDelete: Cascade)
   reminder Reminder[]
+  route    Route[]
+}
+
+model Route {
+  id              String    @id @default(cuid())
+  vehicleId       String
+  vehicle         Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date            DateTime
+  notes           String?
+  odometer_end    Int
+  odometer_start  Int
+  route_end       String
+  route_end_date  String
+  route_end_time  String?
+  route_start     String
+  route_start_date String
+  route_start_time String?
+  total_cost      String?
 }
 
 model Reminder {
   id              String    @id @default(cuid())
   vehicleId       String
   vehicle         Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
-  date            DateTime?
+  date            DateTime
   reminder_type   String
   reminder_repeat String
   reminder_name   String

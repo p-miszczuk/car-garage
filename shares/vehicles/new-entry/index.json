@@ -156,7 +156,8 @@
     {
       "name": "route_start",
       "placeholder": "Route start",
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     {
       "type": "group",
@@ -177,12 +178,14 @@
     {
       "name": "odometer_start",
       "placeholder": "Odometer start",
-      "type": "number"
+      "type": "number",
+      "required": true
     },
     {
       "name": "route_end",
       "placeholder": "Route end",
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     {
       "type": "group",
@@ -203,12 +206,13 @@
     {
       "name": "odometer_end",
       "placeholder": "Odometer end",
-      "type": "number"
+      "type": "number",
+      "required": true
     },
     {
       "name": "total_cost",
       "placeholder": "Total cost",
-      "type": "text"
+      "type": "number"
     },
     {
       "name": "notes",
