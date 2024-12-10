@@ -35,11 +35,13 @@ export async function POST(
       },
     };
 
-    let data = {};
-    if (selectedOption === "reminder")
-      data = await prisma.reminder.create(values);
-    else if (selectedOption === "route")
-      data = await prisma.route.create(values);
+    const modelMap: Record<string, { create: (values: any) => Promise<any> }> =
+      {
+        reminder: prisma.reminder,
+        route: prisma.route,
+        service: prisma.service,
+      };
+    const data = await modelMap[selectedOption].create(values);
 
     if (!data || !("id" in data && data.id))
       throw new Error("An unexpected error occurred");

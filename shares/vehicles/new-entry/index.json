@@ -228,24 +228,27 @@
         {
           "type": "date",
           "label": "Date",
-          "name": "route_start_date"
+          "name": "service_start_date",
+          "required": true
         },
         {
           "type": "time",
           "label": "Time",
-          "name": "route_start_time"
+          "name": "service_start_time"
         }
       ]
     },
     {
       "name": "odometer",
       "placeholder": "Odometer",
-      "type": "number"
+      "type": "number",
+      "required": true
     },
     {
       "name": "service_type",
       "placeholder": "Service type",
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     {
       "name": "place",
@@ -255,7 +258,8 @@
     {
       "name": "total_cost",
       "placeholder": "Total cost",
-      "type": "text"
+      "type": "number",
+      "required": true
     },
     {
       "name": "notes",

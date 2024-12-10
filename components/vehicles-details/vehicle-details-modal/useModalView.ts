@@ -82,12 +82,15 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
             });
           }
         }
+      } else if (selectedOption === "service") {
+        const { odometer, total_cost, ...rest } = data;
+        dataToSave = Object.assign(dataToSave, {
+          ...data,
+          odometer: odometer ? Number(odometer) : null,
+          total_cost: total_cost ? Number(total_cost) : null,
+        });
       }
 
-      console.log(
-        "🚀 ~ constonSubmit:SubmitHandler<FormValues>= ~ dataToSave:",
-        dataToSave
-      );
       await fetchData({
         url: "vehicles/add-history",
         method: "POST",
