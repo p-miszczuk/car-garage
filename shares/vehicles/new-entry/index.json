@@ -275,7 +275,8 @@
         {
           "type": "date",
           "label": "Date",
-          "name": "expense_date"
+          "name": "expense_date",
+          "required": true
         },
         {
           "type": "time",
@@ -292,7 +293,8 @@
     {
       "name": "expense_type",
       "placeholder": "Expense type",
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     {
       "name": "place",
@@ -302,7 +304,8 @@
     {
       "name": "total_cost",
       "placeholder": "Total cost",
-      "type": "text"
+      "type": "number",
+      "required": true
     },
     {
       "name": "notes",
@@ -318,7 +321,8 @@
         {
           "type": "date",
           "label": "Date",
-          "name": "refuel_date"
+          "name": "refuel_date",
+          "required": true
         },
         {
           "type": "time",
@@ -337,12 +341,8 @@
         { "value": "cng", "label": "CNG" },
         { "value": "lpg", "label": "LPG" },
         { "value": "electricity", "label": "Electricity" }
-      ]
-    },
-    {
-      "name": "odometer",
-      "placeholder": "Odometer",
-      "type": "number"
+      ],
+      "required": true
     },
     {
       "name": "fuel_info",
@@ -356,12 +356,14 @@
         {
           "type": "number",
           "placeholder": "Cost",
-          "name": "cost"
+          "name": "cost",
+          "required": true
         },
         {
           "type": "number",
           "placeholder": "Odometer",
-          "name": "odometer"
+          "name": "odometer",
+          "required": true
         }
       ]
     },

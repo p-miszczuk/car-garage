@@ -67,6 +67,8 @@ model Vehicle {
   reminder Reminder[]
   route    Route[]
   service  Service[]
+  expense  Expense[]
+  refuel   Refuel[]
 }
 
 model Route {
@@ -114,4 +116,32 @@ model Service {
   service_start_time   String?
   service_start_date   String
   total_cost         Int
+}
+
+model Expense {
+  id                String    @id @default(cuid())
+  vehicleId         String
+  vehicle           Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date              DateTime
+  notes             String?
+  odometer          Int
+  place             String?
+  expense_type      String
+  expense_time      String?
+  expense_date      String
+  total_cost        Int
+}
+
+model Refuel {
+  id                String    @id @default(cuid())
+  vehicleId         String
+  vehicle           Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date              DateTime
+  odometer          Int?
+  gas_station       String?
+  price             Int
+  refuel_date       String
+  refuel_time       String?
+  cost              Int
+  select_fuel_option String?
 }

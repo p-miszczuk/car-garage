@@ -40,6 +40,7 @@ export async function POST(
         reminder: prisma.reminder,
         route: prisma.route,
         service: prisma.service,
+        expense: prisma.expense,
       };
     const data = await modelMap[selectedOption].create(values);
 

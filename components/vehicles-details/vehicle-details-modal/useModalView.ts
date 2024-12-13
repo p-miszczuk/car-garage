@@ -68,7 +68,7 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
       } else if (selectedOption === "route") {
         const { odometer_start, odometer_end, total_cost, ...rest } = data;
         dataToSave = Object.assign(dataToSave, {
-          ...data,
+          ...rest,
           odometer_start: odometer_start ? Number(odometer_start) : null,
           odometer_end: odometer_end ? Number(odometer_end) : null,
           total_cost: total_cost ? Number(total_cost) : null,
@@ -82,12 +82,20 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
             });
           }
         }
-      } else if (selectedOption === "service") {
+      } else if (["service", "expense"].includes(selectedOption)) {
         const { odometer, total_cost, ...rest } = data;
         dataToSave = Object.assign(dataToSave, {
-          ...data,
+          ...rest,
           odometer: odometer ? Number(odometer) : null,
           total_cost: total_cost ? Number(total_cost) : null,
+        });
+      } else if (selectedOption === "refuel") {
+        const { odometer, cost, price, ...rest } = data;
+        dataToSave = Object.assign(dataToSave, {
+          ...rest,
+          odometer: odometer ? Number(odometer) : null,
+          cost: cost ? Number(cost) : null,
+          price: price ? Number(price) : null,
         });
       }
 
