@@ -11,7 +11,7 @@ const ModalView = (data: ModalViewData) => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form onSubmit={methods.handleSubmit(onSubmit)} key={data.selectedOption}>
         <div className="form-fields-wrapper mb-5 flex flex-col gap-4">
           {fields}
         </div>

@@ -65,13 +65,35 @@ model Vehicle {
   userId   String
   user     User       @relation("UserVehicles", fields: [userId], references: [id], onDelete: Cascade)
   reminder Reminder[]
+  route    Route[]
+  service  Service[]
+  expense  Expense[]
+  refuel   Refuel[]
+  fines    Fines[]
+}
+
+model Route {
+  id              String    @id @default(cuid())
+  vehicleId       String
+  vehicle         Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date            DateTime
+  notes           String?
+  odometer_end    Int
+  odometer_start  Int
+  route_end       String
+  route_end_date  String
+  route_end_time  String?
+  route_start     String
+  route_start_date String
+  route_start_time String?
+  total_cost      String?
 }
 
 model Reminder {
   id              String    @id @default(cuid())
   vehicleId       String
   vehicle         Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
-  date            DateTime?
+  date            DateTime
   reminder_type   String
   reminder_repeat String
   reminder_name   String
@@ -81,4 +103,58 @@ model Reminder {
   notes           String
   one_time_km     Int?
   one_time_date   String?
+}
+
+model Service {
+  id                String    @id @default(cuid())
+  vehicleId         String
+  vehicle           Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date              DateTime
+  notes             String?
+  odometer          Int
+  place             String?
+  service_type      String
+  service_start_time   String?
+  service_start_date   String
+  total_cost         Int
+}
+
+model Expense {
+  id                String    @id @default(cuid())
+  vehicleId         String
+  vehicle           Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date              DateTime
+  notes             String?
+  odometer          Int
+  place             String?
+  expense_type      String
+  expense_time      String?
+  expense_date      String
+  total_cost        Int
+}
+
+model Refuel {
+  id                String    @id @default(cuid())
+  vehicleId         String
+  vehicle           Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date              DateTime
+  odometer          Int?
+  gas_station       String?
+  price             Int
+  refuel_date       String
+  refuel_time       String?
+  cost              Int
+  select_fuel_option String?
+}
+
+model Fines {
+  id                String    @id @default(cuid())
+  vehicleId         String
+  vehicle           Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date              DateTime
+  fine_date         String
+  fine_time         String?
+  fine_type         String
+  fine_cost         Int?
+  place             String?
 }

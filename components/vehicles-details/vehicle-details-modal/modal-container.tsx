@@ -23,7 +23,11 @@ const ModalContainer = () => {
         id="new-entry-select"
         onChange={handleChangeOption}
       />
-      <ModalView formFields={selectedForm} selectedOption={selectedOption} />
+      <ModalView
+        key={selectedOption}
+        formFields={selectedForm}
+        selectedOption={selectedOption}
+      />
     </div>
   );
 };

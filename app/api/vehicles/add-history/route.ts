@@ -27,16 +27,27 @@ export async function POST(
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    const fields = await req.json();
-
-    const data = await prisma.reminder.create({
+    const { selectedOption, ...rest } = await req.json();
+    const values = {
       data: {
-        ...fields,
+        ...rest,
         date: new Date(),
       },
-    });
+    };
 
-    if (!data?.id) throw new Error("An unexpected error occurred");
+    const modelMap: Record<string, { create: (values: any) => Promise<any> }> =
+      {
+        reminder: prisma.reminder,
+        route: prisma.route,
+        service: prisma.service,
+        expense: prisma.expense,
+        refuel: prisma.refuel,
+        fines: prisma.fines,
+      };
+    const data = await modelMap[selectedOption].create(values);
+
+    if (!data || !("id" in data && data.id))
+      throw new Error("An unexpected error occurred");
 
     return NextResponse.json(
       { status: "success", message: "The vehicle history item has been added" },
