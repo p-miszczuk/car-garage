@@ -17,7 +17,6 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
   const methods = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log("🚀 ~ constonSubmit:SubmitHandler<FormValues>= ~ data:", data);
     try {
       let dataToSave = Object.assign(
         {},
@@ -97,6 +96,12 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
           cost: cost ? Number(cost) : null,
           price: price ? Number(price) : null,
         });
+      } else if (selectedOption === "fines") {
+        const { fine_cost, ...rest } = data;
+        dataToSave = Object.assign(dataToSave, {
+          ...rest,
+          fine_cost: fine_cost ? Number(fine_cost) : null,
+        });
       }
 
       await fetchData({
@@ -105,7 +110,7 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
         body: dataToSave,
       });
       // TODO: display toast
-      // methods.reset();
+      methods.reset();
     } catch (error) {
       console.log("🚀 ~ onSubmit ~ error:", error);
     }

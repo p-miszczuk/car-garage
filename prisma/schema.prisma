@@ -69,6 +69,7 @@ model Vehicle {
   service  Service[]
   expense  Expense[]
   refuel   Refuel[]
+  fines    Fines[]
 }
 
 model Route {
@@ -144,4 +145,16 @@ model Refuel {
   refuel_time       String?
   cost              Int
   select_fuel_option String?
+}
+
+model Fines {
+  id                String    @id @default(cuid())
+  vehicleId         String
+  vehicle           Vehicle   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  date              DateTime
+  fine_date         String
+  fine_time         String?
+  fine_type         String
+  fine_cost         Int?
+  place             String?
 }

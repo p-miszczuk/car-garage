@@ -393,7 +393,8 @@
     {
       "name": "fine_type",
       "placeholder": "Fine type",
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     {
       "name": "place",
@@ -403,7 +404,8 @@
     {
       "name": "fine_cost",
       "placeholder": "Fine cost",
-      "type": "text"
+      "type": "number",
+      "required": true
     }
   ]
 }
