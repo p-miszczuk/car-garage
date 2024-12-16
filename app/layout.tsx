@@ -1,7 +1,9 @@
 import AuthProviders from "@/components/auth-providers";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { ToastContainer } from "react-toastify";
 import "../styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RootLayout({
   children,
@@ -16,6 +18,12 @@ export default function RootLayout({
           {children}
         </AuthProviders>
         <Footer />
+        <ToastContainer
+          position="top-right"
+          rtl={false}
+          theme="light"
+          closeOnClick
+        />
       </body>
     </html>
   );

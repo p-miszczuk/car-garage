@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ModalViewData } from "./modal-view";
 import { getField } from "@/components/tools/utils";
+import { useToast } from "@/lib/hooks/useToast";
 
 interface FormValues {
   [key: string]: string | number;
@@ -13,7 +14,7 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
   const pathname = usePathname();
   const vehicleId = pathname.split("/")[3];
   const { fetchData } = useFetch();
-
+  const { toastSuccess, toastError } = useToast();
   const methods = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
@@ -70,7 +71,7 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
           ...rest,
           odometer_start: odometer_start ? Number(odometer_start) : null,
           odometer_end: odometer_end ? Number(odometer_end) : null,
-          total_cost: total_cost ? Number(total_cost) : null,
+          cost: total_cost ? Number(total_cost) : null,
         });
 
         if ((odometer_start || odometer_start === 0) && odometer_end) {
@@ -104,26 +105,36 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
         });
       }
 
-      await fetchData({
+      const { message } = await fetchData({
         url: "vehicles/add-history",
         method: "POST",
         body: dataToSave,
       });
-      // TODO: display toast
+
+      toastSuccess(message);
       methods.reset();
-    } catch (error) {
-      console.log("🚀 ~ onSubmit ~ error:", error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toastError(error?.message || "Something went wrong");
+      } else {
+        toastError("Something went wrong");
+      }
     }
   };
 
   const fields = useMemo(() => {
     return (
       formFields?.map((field: Record<string, any>) => {
-        const { register, unregister, control } = methods;
-        return getField({ field, register, unregister, control });
+        const {
+          register,
+          unregister,
+          control,
+          formState: { errors },
+        } = methods;
+        return getField({ field, register, unregister, control, errors });
       }) || null
     );
-  }, [formFields, getField, methods]);
+  }, [formFields, getField, methods, methods.formState.errors]);
 
   return { fields, methods, onSubmit };
 };

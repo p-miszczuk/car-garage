@@ -43,6 +43,8 @@ const FormNewCarView = ({ register, errors, control }: FormNewCarViewProps) => {
               label={label}
               options={options}
               key={field}
+              required={required}
+              error={errorMessage}
             />
           );
 
