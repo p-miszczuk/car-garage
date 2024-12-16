@@ -1,12 +1,7 @@
+import Message from "@/components/auth-form/form-message";
 import classNames from "classnames";
 import { on } from "events";
-import {
-  UseFormRegister,
-  FieldValues,
-  Controller,
-  Control,
-  Path,
-} from "react-hook-form";
+import { FieldValues, Controller, Control, Path } from "react-hook-form";
 import Select from "react-select";
 
 export interface Option {
@@ -21,6 +16,8 @@ export interface ViewProps<T extends FieldValues> {
   placeholder?: string;
   control?: Control<T>;
   onChange?: (val: Option | null) => void;
+  required?: boolean;
+  error?: string;
 }
 
 interface Props {
@@ -38,6 +35,8 @@ const SelectContainer = <T extends FieldValues>({
   placeholder,
   onChange,
   control,
+  required,
+  error,
   ...rest
 }: SelectContainerProps<T>) => {
   if (!control && !onChange) return null;
@@ -61,6 +60,7 @@ const SelectContainer = <T extends FieldValues>({
       {control ? (
         <Controller
           name={id as Path<T>}
+          rules={{ required }}
           control={control}
           render={({ field: { onChange: fieldOnChange, value, ...field } }) => (
             <Select
@@ -88,6 +88,7 @@ const SelectContainer = <T extends FieldValues>({
           {...rest}
         />
       )}
+      {error && <Message message={error} />}
     </div>
   );
 };

@@ -16,7 +16,7 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ vehicle }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
-      { message: "Unauthorized: Missing token" },
+      { message: "Something went wrong, please try again" },
       { status: 401 }
     );
   }

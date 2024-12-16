@@ -6,6 +6,7 @@ import { useFetch } from "../../lib/hooks/useFetch";
 import _get from "lodash/get";
 import FormNewCarView from "./form-new-car-view";
 import SubmitButton from "../auth-form/form-button";
+import { useToast } from "@/lib/hooks/useToast";
 
 export type FormValues = {
   vehicleType: string;
@@ -17,12 +18,14 @@ export type FormValues = {
 
 const FormNewCarContainer = () => {
   const params = useParams();
+  const { toastSuccess, toastError } = useToast();
   const { fetchData } = useFetch();
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
+    reset,
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (
@@ -36,12 +39,22 @@ const FormNewCarContainer = () => {
       fuel: data.fuel,
     };
 
-    const result = await fetchData({
-      url: `vehicles/add-vehicle`,
-      method: "POST",
-      body: { ...formData },
-    });
-    console.log(result);
+    try {
+      const { message } = await fetchData({
+        url: `vehicles/add-vehicle`,
+        method: "POST",
+        body: { ...formData },
+      });
+
+      toastSuccess(message);
+      reset();
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toastError(error?.message || "Something went wrong");
+      } else {
+        toastError("Something went wrong");
+      }
+    }
   };
 
   return (

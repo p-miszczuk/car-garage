@@ -1,4 +1,9 @@
-import { Control, FieldValues, UseFormRegister } from "react-hook-form";
+import {
+  Control,
+  FieldErrors,
+  FieldValues,
+  UseFormRegister,
+} from "react-hook-form";
 import ToggleButtonContainer from "../toggle-button";
 import Input from "../input";
 import Select from "../selects/select";
@@ -9,6 +14,7 @@ interface GetField {
   register: UseFormRegister<FieldValues>;
   unregister?: (name: string) => void;
   control?: Control<FieldValues, undefined>;
+  errors?: FieldErrors<FieldValues>;
 }
 
 export const getField = ({
@@ -16,6 +22,7 @@ export const getField = ({
   register,
   unregister,
   control,
+  errors,
 }: GetField) => {
   if (!field) return null;
 
@@ -42,7 +49,7 @@ export const getField = ({
           label={field.label}
           placeholder={field.placeholder}
           required={field.required}
-          error=""
+          error={(errors?.[field.name]?.message as string) || ""}
         />
       );
     case "checkbox":
@@ -55,6 +62,7 @@ export const getField = ({
           checked={field.isSelected}
           additionalFields={field.fields}
           control={control}
+          error={(errors?.[field.name]?.message as string) || ""}
         />
       );
     case "select":
@@ -65,6 +73,7 @@ export const getField = ({
           placeholder={field.placeholder}
           control={control}
           options={field.options}
+          error={(errors?.[field.name]?.message as string) || ""}
         />
       );
     case "group":
