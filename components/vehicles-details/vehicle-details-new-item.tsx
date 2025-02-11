@@ -4,8 +4,10 @@ import { useState } from "react";
 import Button from "../tools/button";
 import CustomModal from "../tools/modal";
 
+const initialIsModalState = false;
+
 const VehicleDetailsNewItem = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(initialIsModalState);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);

@@ -31,7 +31,7 @@ export async function POST(
     const values = {
       data: {
         ...rest,
-        date: new Date(),
+        date: new Date().toISOString(),
       },
     };
 

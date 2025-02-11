@@ -71,7 +71,7 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
           ...rest,
           odometer_start: odometer_start ? Number(odometer_start) : null,
           odometer_end: odometer_end ? Number(odometer_end) : null,
-          cost: total_cost ? Number(total_cost) : null,
+          total_cost: total_cost ? Number(total_cost) : null,
         });
 
         if ((odometer_start || odometer_start === 0) && odometer_end) {
