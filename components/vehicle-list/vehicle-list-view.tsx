@@ -52,7 +52,7 @@ const VehicleListView = ({ vehicles = [], refresh }: VehicleListViewData) => {
         ),
       },
     ],
-    [handleDelete, handleOpen]
+    [handleOpen, handleOpenConfirmModal]
   );
 
   return (
