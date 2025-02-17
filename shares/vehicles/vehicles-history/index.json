@@ -1,0 +1,56 @@
+{
+  "fines": [
+    { "value": "date", "label": "Created date:" },
+    { "value": "fine_date", "label": "Fine date:" },
+    { "value": "fine_time", "label": "Fine time:" },
+    { "value": "fine_type", "label": "Fine type:" },
+    { "value": "place", "label": "Place:" },
+    {
+      "value": "fine_cost",
+      "label": "Fine cost:"
+    }
+  ],
+  "service": [
+    { "value": "date", "label": "Created date:" },
+    { "value": "service_type", "label": "Service type:" },
+    { "value": "service_start_date", "label": "Service start date:" },
+    { "value": "service_start_time", "label": "Service start time:" },
+    { "value": "odometer", "label": "Odometer:" },
+    { "value": "place", "label": "Place:" },
+    { "value": "total_cost", "label": "Total cost:" },
+    { "value": "notes", "label": "Notes:" }
+  ],
+  "expense": [
+    { "value": "date", "label": "Created date:" },
+    { "value": "expense_type", "label": "Expense type:" },
+    { "value": "expense_date", "label": "Expense date:" },
+    { "value": "expense_time", "label": "Expense time:" },
+    { "value": "odometer", "label": "Odometer:" },
+    { "value": "place", "label": "Place:" },
+    { "value": "total_cost", "label": "Total cost:" },
+    { "value": "notes", "label": "Notes:" }
+  ],
+  "route": [
+    { "value": "date", "label": "Created date:" },
+    { "value": "odometer_start", "label": "Odometer start:" },
+    { "value": "odometer_end", "label": "Odometer end:" },
+    { "value": "route_start", "label": "Route start:" },
+    { "value": "route_end", "label": "Route end:" },
+    { "value": "route_start_date", "label": "Route start date:" },
+    { "value": "route_end_date", "label": "Route end date:" },
+    { "value": "route_start_time", "label": "Route start time:" },
+    { "value": "route_end_time", "label": "Route end time:" },
+    { "value": "total_cost", "label": "Total cost:" },
+    { "value": "notes", "label": "Notes:" }
+  ],
+  "refuel": [
+    { "value": "date", "label": "Created date:" },
+    { "value": "odometer", "label": "Odometer:" },
+    { "value": "gas_station", "label": "Gas station:" },
+    { "value": "price", "label": "Price:" },
+    { "value": "refuel_date", "label": "Refuel date:" },
+    { "value": "refuel_time", "label": "Refuel time:" },
+    { "value": "cost", "label": "Cost:" },
+    { "value": "select_fuel_option", "label": "Select fuel option:" }
+  ]
+}

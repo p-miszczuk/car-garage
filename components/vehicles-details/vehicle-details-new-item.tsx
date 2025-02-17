@@ -4,8 +4,10 @@ import { useState } from "react";
 import Button from "../tools/button";
 import CustomModal from "../tools/modal";
 
-const VehicleDetailsNewItem = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const initialIsModalState = false;
+
+const VehicleDetailsNewItem = ({ refresh }: { refresh: () => void }) => {
+  const [isModalOpen, setIsModalOpen] = useState(initialIsModalState);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -13,6 +15,7 @@ const VehicleDetailsNewItem = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    refresh();
   };
 
   return (

@@ -86,7 +86,7 @@ model Route {
   route_start     String
   route_start_date String
   route_start_time String?
-  total_cost      String?
+  total_cost      Int?
 }
 
 model Reminder {
@@ -143,7 +143,7 @@ model Refuel {
   price             Int
   refuel_date       String
   refuel_time       String?
-  cost              Int
+  total_cost        Int
   select_fuel_option String?
 }
 
