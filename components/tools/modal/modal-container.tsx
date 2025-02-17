@@ -44,8 +44,10 @@ const CustomModal = ({
   text = "",
   action,
 }: CustomModalProps) => {
+  const modalStyle = getModalStyle({ width, height, name });
+
   return (
-    <Modal isOpen style={getModalStyle({ width, height, name })}>
+    <Modal isOpen style={modalStyle}>
       <CustomModalView
         name={name}
         text={text}

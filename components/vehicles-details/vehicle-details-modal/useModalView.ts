@@ -1,10 +1,11 @@
 import { useFetch } from "@/lib/hooks/useFetch";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ModalViewData } from "./modal-view";
 import { getField } from "@/components/tools/utils";
 import { useToast } from "@/lib/hooks/useToast";
+import useSWR from "swr";
 
 interface FormValues {
   [key: string]: string | number;

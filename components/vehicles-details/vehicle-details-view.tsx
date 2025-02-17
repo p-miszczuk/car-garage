@@ -1,4 +1,4 @@
-import VehicleDetailsHistory from "./vehicle-details-history";
+import VehicleDetailsList from "./vehicle-details-list";
 import VehicleDetailsMetadata from "./vehicle-details-metadata";
 
 export interface VehicleDetailsViewData {
@@ -20,7 +20,7 @@ const VehiclesDetailsView = ({ vehicle }: VehicleDetailsViewProps) => {
   return (
     <div className="vehicles-details">
       <VehicleDetailsMetadata {...rest} />
-      <VehicleDetailsHistory />
+      <VehicleDetailsList />
     </div>
   );
 };
