@@ -15,7 +15,8 @@ interface VehicleDetailsViewProps {
 }
 
 const VehiclesDetailsView = ({ vehicle }: VehicleDetailsViewProps) => {
-  const { id, ...rest } = vehicle;
+  // eslint-disable-next-line no-unused-vars
+  const { id: _id, ...rest } = vehicle;
 
   return (
     <div className="vehicles-details">

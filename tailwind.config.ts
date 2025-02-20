@@ -2,11 +2,7 @@ import type { Config } from "tailwindcss";
 import { nextui } from "@nextui-org/react";
 import { PluginCreator } from "tailwindcss/types/config";
 
-type Plugin = {
-  addComponents: (value: Record<string, unknown>) => void;
-};
-
-const pluginCreator: PluginCreator = ({ addComponents }: Plugin) => {
+const pluginCreator: PluginCreator = ({ addComponents }) => {
   addComponents({
     ".container": {
       maxWidth: "100%",
@@ -41,4 +37,5 @@ const config: Config = {
   },
   plugins: [pluginCreator, nextui()],
 };
+
 export default config;

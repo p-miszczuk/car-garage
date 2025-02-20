@@ -10,6 +10,7 @@ type CheckboxContainerProps = {
   checked: boolean;
   additionalFields: Array<Record<string, any>>;
   control?: Control<FieldValues, undefined>;
+  error?: string;
 };
 
 const CheckboxContainer = ({

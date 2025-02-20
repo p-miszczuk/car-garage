@@ -4,6 +4,7 @@ import type { NextRequest } from "next/server";
 
 const secret = process.env.NEXTAUTH_SECRET;
 
+// eslint-disable-next-line import/no-unused-modules
 export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
 
@@ -25,6 +26,7 @@ export async function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
+// eslint-disable-next-line import/no-unused-modules
 export const config = {
   matcher: "/api/:path*",
 };

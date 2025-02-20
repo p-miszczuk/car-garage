@@ -17,8 +17,7 @@ interface Session {
 }
 
 export async function POST(
-  req: NextRequest & { headers: Record<string, string> },
-  res: NextResponse
+  req: NextRequest & { headers: Record<string, string> }
 ) {
   try {
     const session = (await getServerSession(authOptions)) as unknown as Session;

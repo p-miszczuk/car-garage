@@ -17,8 +17,7 @@ interface Session {
 }
 
 export async function POST(
-  req: NextRequest & { headers: Record<string, string> },
-  res: NextResponse
+  req: NextRequest & { headers: Record<string, string> }
 ) {
   try {
     const session = (await getServerSession(authOptions)) as unknown as Session;
@@ -47,6 +46,7 @@ export async function POST(
       { status: 201 }
     );
   } catch (error: any) {
+    console.error(error);
     return NextResponse.json(
       { message: error?.message || "An unexpected error occurred" },
       { status: 401 }

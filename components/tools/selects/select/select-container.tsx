@@ -1,8 +1,7 @@
 import Message from "@/components/auth-form/form-message";
 import classNames from "classnames";
-import { on } from "events";
-import { FieldValues, Controller, Control, Path } from "react-hook-form";
 import Select from "react-select";
+import { FieldValues, Controller, Control, Path } from "react-hook-form";
 
 export interface Option {
   value: string;
@@ -10,7 +9,7 @@ export interface Option {
   isDisabled?: boolean;
 }
 
-export interface ViewProps<T extends FieldValues> {
+interface ViewProps<T extends FieldValues> {
   id: string;
   options: Option[];
   placeholder?: string;

@@ -58,7 +58,7 @@ export const validateField =
     return getMessage(id);
   };
 
-export const validateFormField = ({ field, value }: Validate): boolean => {
+const validateFormField = ({ field, value }: Validate): boolean => {
   const reg = VALIDATORS[field as keyof typeof VALIDATORS];
 
   return reg?.test(value);

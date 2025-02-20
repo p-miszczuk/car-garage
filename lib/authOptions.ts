@@ -1,10 +1,10 @@
 import prisma from "@/lib/prisma";
-import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 // import GoogleProvider from "next-auth/providers/google";
 import * as bcrypt from "bcrypt";
 import { User } from "@prisma/client";
 
+// @ts-ignore-unused-export
 export const authOptions: AuthOptions = {
   pages: {
     signIn: "/auth",
@@ -65,19 +65,20 @@ export const authOptions: AuthOptions = {
         // if (!user.emailVerified)
         //   throw new Error("Please verify your email first!");
 
-        const { password, ...userWithoutPass } = user;
+        // eslint-disable-next-line no-unused-vars
+        const { password: _password, ...userWithoutPass } = user;
         return { ...userWithoutPass };
       },
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: any; user: any }) {
       if (user) token.user = user as User;
       return token;
     },
 
-    async session({ token, session }) {
+    async session({ token, session }: { token: any; session: any }) {
       session.user = token.user;
       return session;
     },

@@ -1,7 +1,6 @@
+import { Control, UseFormRegister } from "react-hook-form";
 import newVehicle from "../../shares/new-vehicles/index.json";
 import Input from "../tools/input";
-import { Control, UseFormRegister } from "react-hook-form";
-import { FormValues } from "./form-new-car-container";
 import Select from "../tools/selects/select";
 
 interface FormNewCarViewProps {
