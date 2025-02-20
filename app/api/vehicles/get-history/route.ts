@@ -1,5 +1,6 @@
 import { authOptions } from "@/lib/authOptions";
 import { PrismaClient } from "@prisma/client";
+// @ts-ignore
 import { getServerSession } from "next-auth";
 import { NextResponse, NextRequest } from "next/server";
 
@@ -33,6 +34,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ [type]: vehicle?.[type] }, { status: 200 });
   } catch (error) {
+    console.error(error);
     return NextResponse.json(
       { message: "An unexpected error occurred" },
       { status: 401 }

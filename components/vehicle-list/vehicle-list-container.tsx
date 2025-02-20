@@ -14,7 +14,7 @@ const VehicleListContainer = () => {
 
   const handleRefresh = (id: string): void => {
     mutate({
-      ...data?.vehicles.filter(
+      vehicles: data?.vehicles.filter(
         (vehicle: VehicleDetailsViewData) => vehicle.id !== id
       ),
     });

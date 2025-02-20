@@ -3,9 +3,6 @@
 import { useState } from "react";
 import TabsView from "./tabs-view";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { GET_VEHICLE_HISTORY_URL } from "@/components/vehicles-details/vehicle-details-list";
-import useSWRMutation from "swr/mutation";
-import { fetcher } from "@/utils";
 
 interface TabsContainerProps {
   tabs: { label: string; value: string }[];
@@ -14,12 +11,7 @@ interface TabsContainerProps {
   mutate?: () => void;
 }
 
-const TabsContainer = ({
-  children,
-  tabs = [],
-  type,
-  mutate,
-}: TabsContainerProps) => {
+const TabsContainer = ({ children, tabs = [] }: TabsContainerProps) => {
   const router = useRouter();
   const { vehicleId } = useParams();
   const searchParams = useSearchParams();

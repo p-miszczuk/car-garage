@@ -1,5 +1,4 @@
 import { useSession } from "next-auth/react";
-import Loadable from "next/dist/shared/lib/loadable.shared-runtime";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
 import Loader from "../tools/loader";
@@ -9,7 +8,7 @@ type ProtectedRouteProps = {
 };
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {

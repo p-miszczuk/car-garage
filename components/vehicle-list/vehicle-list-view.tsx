@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import { useVehiclesList } from "./useVehiclesList";
-import _omit from "lodash/omit";
 import Table from "rc-table";
 import CustomModal from "../tools/modal";
 import Button from "../tools/button";

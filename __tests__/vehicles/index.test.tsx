@@ -1,10 +1,4 @@
-import {
-  render,
-  screen,
-  waitFor,
-  fireEvent,
-  act,
-} from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { useSession } from "next-auth/react";
 import { USER_AUTHENTICATED } from "../header/index.test";
 import { useParams, useRouter } from "next/navigation";

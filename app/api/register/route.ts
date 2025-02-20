@@ -51,7 +51,7 @@ export async function POST(req: Request) {
     //   await sendMail({ to: user.email, subject: "Activate Your Account", body });
 
     return NextResponse.json(
-      { message: "User registered successfully!" },
+      { message: `User ${user?.email} registered successfully!` },
       { status: 201 }
     );
   } catch (error) {

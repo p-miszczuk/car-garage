@@ -1,8 +1,5 @@
-"use client";
-
-import InputView, { InputViewProps } from "./input-view";
 import { UseFormRegister } from "react-hook-form";
-import { FormValues } from "../../auth-form/form-view";
+import InputView, { InputViewProps } from "./input-view";
 import Message from "../../auth-form/form-message";
 
 interface Props {

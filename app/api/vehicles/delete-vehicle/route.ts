@@ -14,7 +14,8 @@ export async function DELETE(req: NextRequest) {
 
     // NextResponse
     return NextResponse.json({ vehicle }, { status: 200 });
-  } catch (error) {
+  } catch (error: unknown) {
+    console.error(error);
     return NextResponse.json(
       { message: "Something went wrong, please try again" },
       { status: 401 }

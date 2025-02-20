@@ -5,20 +5,14 @@ import { getMessage } from "@/utils";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { signIn, SignInResponse } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useFetch } from "@/lib/hooks/useFetch";
 import Input from "../tools/input";
 import SubmitButton from "./form-button";
-import { useFetch } from "@/lib/hooks/useFetch";
 
 export type FormValues = {
   login: string;
   password: string;
   confirm?: string;
-};
-
-const isId = (resp: unknown) => {
-  return (
-    resp && typeof resp === "object" && "id" in resp && resp.id !== undefined
-  );
 };
 
 const FormView = ({ type = "login" }: { type: string }): JSX.Element => {
@@ -50,6 +44,7 @@ const FormView = ({ type = "login" }: { type: string }): JSX.Element => {
         });
         router.push("/auth");
       } catch (err) {
+        console.error(err);
         setError("confirm", {
           type: "validation",
           message: "Please try again",

@@ -13,17 +13,20 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/api/*": ["./app/api/*"]
     },
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
     "next-auth.d.ts",
+    "jest.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"

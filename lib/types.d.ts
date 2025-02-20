@@ -1,5 +1,4 @@
-import NextAuth from "next-auth";
-
+/* eslint-disable */
 declare module "next-auth" {
   type User = {
     id: number;

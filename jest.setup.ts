@@ -6,4 +6,5 @@ const config: Config = {
   testRegex: ".helpers\\.test\\.ts?$",
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export default config;
