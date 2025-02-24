@@ -1,0 +1,19 @@
+.rc-table-content {
+  overflow: auto;
+  max-width: 100%;
+  th {
+    background-color: var(--table-row-background-color);
+    padding: 0 5px !important;
+  }
+  tr {
+    &:nth-child(even) {
+      background-color: var(--table-row-background-color);
+    }
+    .border-cell-start {
+      border-left-width: 1px;
+    }
+  }
+}
+.table {
+  max-width: 500px;
+}

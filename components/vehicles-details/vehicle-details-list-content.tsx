@@ -1,53 +1,68 @@
+import { useMemo } from "react";
+import { toast } from "react-toastify";
+import {
+  removeVehicleHistoryItem,
+  ValidModelType,
+} from "@/actions/vehicle-history";
 import historyFields from "../../shares/vehicles/vehicles-history/index.json";
+import Table from "../tools/table";
+import Button from "../tools/button";
 
 interface VehicleDetailsListContentProps {
   data: Record<string, string | number>[];
-  type: string;
+  type: ValidModelType;
+  refresh: () => void;
 }
-
-interface DetailsGroupProps {
-  fields: { value: string; label: string }[];
-  values: Record<string, string | number>;
-}
-
-interface DetailItemProps {
-  label: string;
-  value: string | number;
-}
-
-const DetailsGroup = ({ fields, values }: DetailsGroupProps) => {
-  return (
-    <div className="border-b border-gray-400 pb-2">
-      {fields.map((item) => {
-        const value = values[item.value];
-        if (!value) return null;
-
-        return <DetailItem key={item.value} label={item.label} value={value} />;
-      })}
-    </div>
-  );
-};
-
-const DetailItem = ({ label, value }: DetailItemProps) => {
-  return (
-    <div className="flex flex-row gap-0 w-full justify-start">
-      <span className="w-48 font-bold text-gray-700">{label}</span>
-      <span>{value}</span>
-    </div>
-  );
-};
 
 const VehicleDetailsListContent = ({
   data = [],
   type,
+  refresh,
 }: VehicleDetailsListContentProps) => {
-  const fields = historyFields[type as keyof typeof historyFields];
+  const columns = useMemo(() => {
+    return [
+      ...historyFields[type as keyof typeof historyFields],
+      {
+        key: "delete",
+        dataIndex: "delete",
+        title: "Delete",
+        align: "center",
+        minWidth: 120,
+        className: "p-2 border-cell-start border-gray-300",
+        render: (value: string, record: Record<string, string | number>) => {
+          const handleDeleteClick = (id: string | number) => async () => {
+            if (!id) return;
+            const { success, message } = await removeVehicleHistoryItem({
+              id: id.toString(),
+              type,
+            });
+
+            toast?.[success ? "success" : "error"](message);
+            refresh();
+          };
+
+          return (
+            <Button
+              text="Delete"
+              customClass="py-2 px-4 border rounded-md"
+              onClick={handleDeleteClick(record?.id)}
+            />
+          );
+        },
+      },
+    ];
+  }, [type, refresh]);
 
   return (
     <div className="flex flex-col gap-2 w-full">
-      {data.map((values) => (
-        <DetailsGroup key={values.id} fields={fields} values={values} />
-      ))}
+      <Table
+        columns={columns}
+        data={data}
+        rowKey="id"
+        className="table w-full"
+        rowClassName="hover:bg-gray-100 border-b border-gray-300 h-8"
+        tableLayout="auto"
+      />
     </div>
   );
 };
