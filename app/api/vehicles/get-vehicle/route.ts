@@ -1,5 +1,6 @@
 import { authOptions } from "@/lib/authOptions";
 import { PrismaClient } from "@prisma/client";
+// @ts-ignore
 import { getServerSession } from "next-auth";
 import { NextResponse, NextRequest } from "next/server";
 

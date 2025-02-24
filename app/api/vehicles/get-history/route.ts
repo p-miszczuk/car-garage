@@ -32,7 +32,10 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    return NextResponse.json({ [type]: vehicle?.[type] }, { status: 200 });
+    return NextResponse.json(
+      { [type]: vehicle?.[type] || [] },
+      { status: 200 }
+    );
   } catch (error) {
     console.error(error);
     return NextResponse.json(

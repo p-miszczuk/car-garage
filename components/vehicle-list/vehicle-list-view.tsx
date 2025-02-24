@@ -2,10 +2,10 @@
 
 import { useMemo } from "react";
 import { useVehiclesList } from "./useVehiclesList";
-import Table from "rc-table";
 import CustomModal from "../tools/modal";
 import Button from "../tools/button";
 import vehiclesTableData from "@/shares/vehicles/vehicles-table/index.json";
+import Table from "../tools/table";
 import "./styles.scss";
 
 interface Vehicle {
@@ -60,10 +60,9 @@ const VehicleListView = ({ vehicles = [], refresh }: VehicleListViewData) => {
         columns={columns}
         data={vehicles}
         rowKey="id"
-        className="w-full"
+        className="history-table w-full"
         rowClassName="hover:bg-gray-100 border-b border-gray-200 h-8"
         tableLayout="fixed"
-        prefixCls="rc-table"
       />
       {vehicleId ? (
         <CustomModal

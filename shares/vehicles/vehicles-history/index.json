@@ -1,56 +1,340 @@
 {
   "fines": [
-    { "value": "date", "label": "Created date:" },
-    { "value": "fine_date", "label": "Fine date:" },
-    { "value": "fine_time", "label": "Fine time:" },
-    { "value": "fine_type", "label": "Fine type:" },
-    { "value": "place", "label": "Place:" },
     {
-      "value": "fine_cost",
-      "label": "Fine cost:"
+      "key": "date",
+      "dataIndex": "date",
+      "title": "Created date:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2"
+    },
+    {
+      "key": "fine_date",
+      "dataIndex": "fine_date",
+      "title": "Fine date:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "fine_time",
+      "dataIndex": "fine_time",
+      "title": "Fine time:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "fine_type",
+      "dataIndex": "fine_type",
+      "title": "Fine type:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "place",
+      "dataIndex": "place",
+      "title": "Place:",
+      "align": "right",
+      "minWidth": 170,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "fine_cost",
+      "dataIndex": "fine_cost",
+      "title": "Fine cost:",
+      "align": "right",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
     }
   ],
   "service": [
-    { "value": "date", "label": "Created date:" },
-    { "value": "service_type", "label": "Service type:" },
-    { "value": "service_start_date", "label": "Service start date:" },
-    { "value": "service_start_time", "label": "Service start time:" },
-    { "value": "odometer", "label": "Odometer:" },
-    { "value": "place", "label": "Place:" },
-    { "value": "total_cost", "label": "Total cost:" },
-    { "value": "notes", "label": "Notes:" }
+    {
+      "key": "date",
+      "dataIndex": "date",
+      "title": "Created date:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2"
+    },
+    {
+      "key": "service_type",
+      "dataIndex": "service_type",
+      "title": "Service type:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "service_start_date",
+      "dataIndex": "service_start_date",
+      "title": "Service start date:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "service_start_time",
+      "dataIndex": "service_start_time",
+      "title": "Service start time:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "odometer",
+      "dataIndex": "odometer",
+      "title": "Odometer:",
+      "align": "right",
+      "minWidth": 150,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "place",
+      "dataIndex": "place",
+      "title": "Place:",
+      "align": "right",
+      "minWidth": 170,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "total_cost",
+      "dataIndex": "total_cost",
+      "title": "Total cost:",
+      "align": "right",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "notes",
+      "dataIndex": "notes",
+      "title": "Notes:",
+      "align": "center",
+      "minWidth": 300,
+      "className": "p-2 border-cell-start border-gray-300"
+    }
   ],
   "expense": [
-    { "value": "date", "label": "Created date:" },
-    { "value": "expense_type", "label": "Expense type:" },
-    { "value": "expense_date", "label": "Expense date:" },
-    { "value": "expense_time", "label": "Expense time:" },
-    { "value": "odometer", "label": "Odometer:" },
-    { "value": "place", "label": "Place:" },
-    { "value": "total_cost", "label": "Total cost:" },
-    { "value": "notes", "label": "Notes:" }
+    {
+      "key": "date",
+      "dataIndex": "date",
+      "title": "Created date:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2"
+    },
+    {
+      "key": "expense_type",
+      "dataIndex": "expense_type",
+      "title": "Expense type:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "expense_date",
+      "dataIndex": "expense_date",
+      "title": "Expense date:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "expense_time",
+      "dataIndex": "expense_time",
+      "title": "Expense time:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "odometer",
+      "dataIndex": "odometer",
+      "title": "Odometer:",
+      "align": "right",
+      "minWidth": 150,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "place",
+      "dataIndex": "place",
+      "title": "Place:",
+      "align": "right",
+      "minWidth": 170,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "total_cost",
+      "dataIndex": "total_cost",
+      "label": "Total cost:",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "notes",
+      "dataIndex": "notes",
+      "title": "Notes:",
+      "align": "center",
+      "minWidth": 300,
+      "className": "p-2 border-cell-start border-gray-300"
+    }
   ],
   "route": [
-    { "value": "date", "label": "Created date:" },
-    { "value": "odometer_start", "label": "Odometer start:" },
-    { "value": "odometer_end", "label": "Odometer end:" },
-    { "value": "route_start", "label": "Route start:" },
-    { "value": "route_end", "label": "Route end:" },
-    { "value": "route_start_date", "label": "Route start date:" },
-    { "value": "route_end_date", "label": "Route end date:" },
-    { "value": "route_start_time", "label": "Route start time:" },
-    { "value": "route_end_time", "label": "Route end time:" },
-    { "value": "total_cost", "label": "Total cost:" },
-    { "value": "notes", "label": "Notes:" }
+    {
+      "key": "date",
+      "dataIndex": "date",
+      "title": "Created date:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2"
+    },
+    {
+      "key": "route_start",
+      "dataIndex": "route_start",
+      "title": "Location start:",
+      "align": "right",
+      "minWidth": 170,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "odometer_start",
+      "dataIndex": "odometer_start",
+      "title": "Odometer start:",
+      "align": "right",
+      "minWidth": 150,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "route_start_date",
+      "dataIndex": "route_start_date",
+      "title": "Start date:",
+      "align": "right",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "route_start_time",
+      "dataIndex": "route_start_time",
+      "title": "Start time:",
+      "align": "right",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "route_end",
+      "dataIndex": "route_end",
+      "title": "Location end:",
+      "align": "right",
+      "minWidth": 170,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "odometer_end",
+      "dataIndex": "odometer_end",
+      "title": "Odometer end:",
+      "align": "right",
+      "minWidth": 140,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "route_end_date",
+      "dataIndex": "route_end_date",
+      "title": "End date:",
+      "align": "right",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+
+    {
+      "key": "route_end_time",
+      "dataIndex": "route_end_time",
+      "title": "End time:",
+      "align": "right",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "total_cost",
+      "dataIndex": "total_cost",
+      "title": "Total cost:",
+      "align": "right",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "notes",
+      "dataIndex": "notes",
+      "title": "Notes:",
+      "align": "center",
+      "minWidth": 300,
+      "className": "p-2 border-cell-start border-gray-300"
+    }
   ],
   "refuel": [
-    { "value": "date", "label": "Created date:" },
-    { "value": "odometer", "label": "Odometer:" },
-    { "value": "gas_station", "label": "Gas station:" },
-    { "value": "price", "label": "Price:" },
-    { "value": "refuel_date", "label": "Refuel date:" },
-    { "value": "refuel_time", "label": "Refuel time:" },
-    { "value": "cost", "label": "Cost:" },
-    { "value": "select_fuel_option", "label": "Select fuel option:" }
+    {
+      "key": "date",
+      "dataIndex": "date",
+      "title": "Created date:",
+      "align": "center",
+      "minWidth": 120,
+      "className": "p-2"
+    },
+    {
+      "key": "odometer",
+      "dataIndex": "odometer",
+      "title": "Odometer:",
+      "align": "right",
+      "minWidth": 150,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "gas_station",
+      "dataIndex": "gas_station",
+      "title": "Gas station:",
+      "align": "right",
+      "minWidth": 170,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "price",
+      "dataIndex": "price",
+      "title": "Price:",
+      "align": "right",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "refuel_date",
+      "dataIndex": "refuel_date",
+      "title": "Refuel date:",
+      "align": "right",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "refuel_time",
+      "dataIndex": "refuel_time",
+      "title": "Refuel time:",
+      "align": "right",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "cost",
+      "dataIndex": "cost",
+      "title": "Cost:",
+      "align": "right",
+      "minWidth": 120,
+      "className": "p-2 border-cell-start border-gray-300"
+    },
+    {
+      "key": "select_fuel_option",
+      "dataIndex": "select_fuel_option",
+      "title": "Select fuel option:",
+      "align": "center",
+      "minWidth": 300,
+      "className": "p-2 border-cell-start border-gray-300"
+    }
   ]
 }
