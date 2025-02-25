@@ -19,19 +19,18 @@ interface Vehicle {
 
 interface VehicleListViewData {
   readonly vehicles: Array<Readonly<Vehicle>>;
-  readonly refresh: (id: string) => void;
 }
 
 const { vehiclesTableColumns } = vehiclesTableData;
 
-const VehicleListView = ({ vehicles = [], refresh }: VehicleListViewData) => {
+const VehicleListView = ({ vehicles = [] }: VehicleListViewData) => {
   const {
     vehicleId,
     handleDelete,
     handleOpen,
     handleOpenConfirmModal,
     handleCloseModal,
-  } = useVehiclesList({ refresh });
+  } = useVehiclesList();
 
   const columns = useMemo(
     () => [

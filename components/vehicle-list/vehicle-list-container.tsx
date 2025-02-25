@@ -1,31 +1,18 @@
-"use client";
-
-import { fetcher } from "@/utils";
-import { VehicleDetailsViewData } from "../vehicles-details/vehicle-details-view";
-import useSWR from "swr";
 import VehicleListView from "./vehicle-list-view";
+import getVehicles from "@/actions/vehicles";
 
 export const GET_VEHICLES_URL = "http://localhost:8000/api/vehicles";
 
-const VehicleListContainer = () => {
-  const { data, mutate } = useSWR(GET_VEHICLES_URL, fetcher, {
-    revalidateOnFocus: false,
-  });
-
-  const handleRefresh = (id: string): void => {
-    mutate({
-      vehicles: data?.vehicles.filter(
-        (vehicle: VehicleDetailsViewData) => vehicle.id !== id
-      ),
-    });
-  };
+const VehicleListContainer = async () => {
+  const { status, vehicles = [] } = await getVehicles();
+  const isError = status === "error";
 
   return (
     <div className="vehicles-list">
-      {data?.vehicles?.length === 0 ? (
+      {isError ? (
         <p>No vehicles found.</p>
       ) : (
-        <VehicleListView vehicles={data?.vehicles} refresh={handleRefresh} />
+        <VehicleListView vehicles={vehicles} />
       )}
     </div>
   );
