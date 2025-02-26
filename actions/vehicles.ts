@@ -2,18 +2,18 @@
 
 import { authOptions } from "@/lib/authOptions";
 import prisma from "@/lib/prisma";
+import { Vehicle } from "@prisma/client";
 // @ts-ignore
 import { getServerSession } from "next-auth";
+import { UNAUTHORIZED_ERROR } from "./utils";
+import { actionsErrorsWrapper } from "./utils/helpers";
 
 export default async function getVehicles() {
-  try {
+  return actionsErrorsWrapper(async () => {
     const session = await getServerSession(authOptions);
 
     if (!session?.user.id) {
-      return {
-        status: "error",
-        message: "Unauthorized: Missing token",
-      };
+      return UNAUTHORIZED_ERROR;
     }
 
     const vehicles = await prisma.vehicle.findMany({
@@ -26,24 +26,15 @@ export default async function getVehicles() {
       status: "success",
       vehicles,
     };
-  } catch (error) {
-    console.error(error);
-    return {
-      status: "error",
-      message: "An unexpected error occurred",
-    };
-  }
+  });
 }
 
 export async function deleteVehicle(id: string) {
-  try {
+  return actionsErrorsWrapper(async () => {
     const session = await getServerSession(authOptions);
 
     if (!session?.user.id) {
-      return {
-        status: "error",
-        message: "Unauthorized: Missing token",
-      };
+      return UNAUTHORIZED_ERROR;
     }
 
     await prisma.vehicle.delete({
@@ -56,11 +47,45 @@ export async function deleteVehicle(id: string) {
       status: "success",
       message: "Vehicle deleted successfully",
     };
-  } catch (error) {
-    console.error(error);
+  });
+}
+
+export async function addVehicle(vehicle: Omit<Vehicle, "id" | "userId">) {
+  return actionsErrorsWrapper(async () => {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      return UNAUTHORIZED_ERROR;
+    }
+
+    await prisma.vehicle.create({
+      data: { ...vehicle, userId: session.user.id },
+    });
+
     return {
-      status: "error",
-      message: "An unexpected error occurred",
+      status: "success",
+      message: "Vehicle added successfully",
     };
-  }
+  });
+}
+
+export async function getVehicle(id: string) {
+  return actionsErrorsWrapper(async () => {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user.id) {
+      return UNAUTHORIZED_ERROR;
+    }
+
+    const vehicle = await prisma.vehicle.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return {
+      status: "success",
+      vehicle,
+    };
+  });
 }

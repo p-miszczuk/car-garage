@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo } from "react";
 import { toast } from "react-toastify";
 import {
@@ -10,18 +12,16 @@ import Button from "../tools/button";
 
 interface VehicleDetailsListContentProps {
   data: Record<string, string | number>[];
-  type: ValidModelType;
-  refresh: () => void;
+  serviceType: ValidModelType;
 }
 
 const VehicleDetailsListContent = ({
   data = [],
-  type,
-  refresh,
+  serviceType,
 }: VehicleDetailsListContentProps) => {
   const columns = useMemo(() => {
     return [
-      ...historyFields[type as keyof typeof historyFields],
+      ...historyFields[serviceType as keyof typeof historyFields],
       {
         key: "delete",
         dataIndex: "delete",
@@ -34,11 +34,10 @@ const VehicleDetailsListContent = ({
             if (!id) return;
             const { success, message } = await removeVehicleHistoryItem({
               id: id.toString(),
-              type,
+              serviceType,
             });
 
             toast?.[success ? "success" : "error"](message);
-            refresh();
           };
 
           return (
@@ -51,7 +50,7 @@ const VehicleDetailsListContent = ({
         },
       },
     ];
-  }, [type, refresh]);
+  }, [serviceType]);
 
   return (
     <div className="flex flex-col gap-2 w-full">

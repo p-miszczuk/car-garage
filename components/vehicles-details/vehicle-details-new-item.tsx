@@ -6,7 +6,7 @@ import CustomModal from "../tools/modal";
 
 const initialIsModalState = false;
 
-const VehicleDetailsNewItem = ({ refresh }: { refresh: () => void }) => {
+const VehicleDetailsNewItem = () => {
   const [isModalOpen, setIsModalOpen] = useState(initialIsModalState);
 
   const handleOpenModal = () => {
@@ -15,7 +15,6 @@ const VehicleDetailsNewItem = ({ refresh }: { refresh: () => void }) => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    refresh();
   };
 
   return (
