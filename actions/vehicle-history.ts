@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/authOptions";
 import prisma from "@/lib/prisma";
 // @ts-ignore
 import { getServerSession } from "next-auth";
-import { actionsErrorsWrapper } from "./utils/helpers";
+import { handleError } from "./utils/helpers";
 import { UNAUTHORIZED_ERROR } from "./utils";
 import dayjs from "dayjs";
 
@@ -24,7 +24,7 @@ export async function getVehicleHistory({
   vehicleId: string;
   serviceType: ValidModelType;
 }) {
-  return actionsErrorsWrapper(async () => {
+  return handleError(async () => {
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
@@ -62,7 +62,7 @@ export async function removeVehicleHistoryItem({
   id: string;
   serviceType: ValidModelType;
 }) {
-  return actionsErrorsWrapper(async () => {
+  return handleError(async () => {
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
@@ -73,5 +73,49 @@ export async function removeVehicleHistoryItem({
       where: { id },
     });
     return { success: true, message: "Vehicle history item removed" };
+  });
+}
+
+export async function addVehicleHistoryItem<
+  T extends Record<string, string | number | null>,
+>(dataToSave: T) {
+  console.log("🚀 ~ dataToSave:", dataToSave);
+  return handleError(async () => {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      return UNAUTHORIZED_ERROR;
+    }
+
+    const { selectedOption, ...rest } = dataToSave || {};
+    const values = {
+      data: {
+        ...rest,
+        date: dayjs().toISOString(),
+      },
+    };
+
+    const modelMap: Record<string, { create: (values: any) => Promise<any> }> =
+      {
+        reminder: prisma.reminder,
+        route: prisma.route,
+        service: prisma.service,
+        expense: prisma.expense,
+        refuel: prisma.refuel,
+        fines: prisma.fines,
+      };
+    const data = await modelMap[selectedOption as string].create(values);
+
+    if (!data || !("id" in data && data.id)) {
+      return {
+        status: "error",
+        message: "An unexpected error occurred",
+      };
+    }
+
+    return {
+      status: "success",
+      message: "The vehicle history item has been added",
+    };
   });
 }

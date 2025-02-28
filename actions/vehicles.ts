@@ -6,10 +6,10 @@ import { Vehicle } from "@prisma/client";
 // @ts-ignore
 import { getServerSession } from "next-auth";
 import { UNAUTHORIZED_ERROR } from "./utils";
-import { actionsErrorsWrapper } from "./utils/helpers";
+import { handleError } from "./utils/helpers";
 
 export default async function getVehicles() {
-  return actionsErrorsWrapper(async () => {
+  return handleError(async () => {
     const session = await getServerSession(authOptions);
 
     if (!session?.user.id) {
@@ -30,7 +30,7 @@ export default async function getVehicles() {
 }
 
 export async function deleteVehicle(id: string) {
-  return actionsErrorsWrapper(async () => {
+  return handleError(async () => {
     const session = await getServerSession(authOptions);
 
     if (!session?.user.id) {
@@ -51,7 +51,7 @@ export async function deleteVehicle(id: string) {
 }
 
 export async function addVehicle(vehicle: Omit<Vehicle, "id" | "userId">) {
-  return actionsErrorsWrapper(async () => {
+  return handleError(async () => {
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
@@ -70,7 +70,7 @@ export async function addVehicle(vehicle: Omit<Vehicle, "id" | "userId">) {
 }
 
 export async function getVehicle(id: string) {
-  return actionsErrorsWrapper(async () => {
+  return handleError(async () => {
     const session = await getServerSession(authOptions);
 
     if (!session?.user.id) {

@@ -8,6 +8,7 @@ type Props = {
   onClick: (value?: any) => void;
   text: string;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 };
 
 type ButtonProps = Readonly<Props>;
@@ -18,6 +19,7 @@ const Button = ({
   onClick,
   text,
   type = "button",
+  disabled = false,
 }: ButtonProps) => {
   const classNames = classnames("", {
     "font-bold": bold,
@@ -30,6 +32,7 @@ const Button = ({
       onClick={onClick}
       className={classNames}
       data-testid="button"
+      disabled={disabled}
     >
       {text}
     </button>

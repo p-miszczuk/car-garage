@@ -1,4 +1,4 @@
-export async function actionsErrorsWrapper(func: any) {
+export async function handleError(func: (...args: any[]) => Promise<any>) {
   try {
     return await func();
   } catch (error) {

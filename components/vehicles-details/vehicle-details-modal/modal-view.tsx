@@ -4,6 +4,7 @@ import { FormProvider } from "react-hook-form";
 export interface ModalViewData {
   readonly formFields: any;
   readonly selectedOption: string;
+  readonly shouldUpdateHistory: () => void;
 }
 
 const ModalView = (data: ModalViewData) => {
@@ -21,6 +22,7 @@ const ModalView = (data: ModalViewData) => {
             text="Add"
             customClass="bg-green-600 p-1 border rounded text-white min-w-[200px]"
             onClick={() => {}}
+            disabled={methods.formState.isSubmitting}
           />
         ) : null}
       </form>
