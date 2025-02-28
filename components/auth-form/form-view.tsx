@@ -5,9 +5,10 @@ import { getMessage } from "@/utils";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { signIn, SignInResponse } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useFetch } from "@/lib/hooks/useFetch";
+import { userRegister } from "@/actions/auth";
 import Input from "../tools/input";
 import SubmitButton from "./form-button";
+import { toast } from "react-toastify";
 
 export type FormValues = {
   login: string;
@@ -17,7 +18,6 @@ export type FormValues = {
 
 const FormView = ({ type = "login" }: { type: string }): JSX.Element => {
   const router = useRouter();
-  const { fetchData } = useFetch();
 
   const {
     register,
@@ -28,28 +28,24 @@ const FormView = ({ type = "login" }: { type: string }): JSX.Element => {
 
   const onSubmit: SubmitHandler<FormValues> = async (data): Promise<void> => {
     if (data.confirm) {
-      if (data.confirm !== data.password) {
+      const { message, status, confirm } = await userRegister(
+        data.login,
+        data.password,
+        data.confirm
+      );
+      const isError = status === "error";
+      const isConfirmError = confirm === false;
+
+      if (isError) {
         setError("confirm", {
           type: "validation",
-          message: getMessage("confirm"),
+          message: isConfirmError ? getMessage("confirm") : message,
         });
         return;
       }
 
-      try {
-        await fetchData({
-          url: "register",
-          method: "POST",
-          body: data,
-        });
-        router.push("/auth");
-      } catch (err) {
-        console.error(err);
-        setError("confirm", {
-          type: "validation",
-          message: "Please try again",
-        });
-      }
+      toast.success(message);
+      router.push("/auth");
       return;
     }
 
