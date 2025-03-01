@@ -7,7 +7,7 @@ interface CustomModalProps {
   readonly width?: string | number;
   readonly height?: string | number;
   readonly text?: string;
-  readonly action?: () => void;
+  readonly action: () => void;
 }
 
 interface ModalStyleProps {

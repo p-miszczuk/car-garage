@@ -1,35 +1,26 @@
-"use client";
-
-import useSWR from "swr";
+import { ValidModelType } from "@/actions/vehicle-history";
 import VehicleDetails from ".";
 import VehiclesDetailsView from "./vehicle-details-view";
-import { fetcher } from "@/utils";
+import { getVehicle } from "@/actions/vehicles";
 
 interface VehicleDetails {
   vehicleId: string;
+  serviceType: ValidModelType;
 }
 
-const VehicleDetailsContainer = ({
+const VehicleDetailsContainer = async ({
   vehicleId,
-}: VehicleDetails): JSX.Element => {
-  const { data, error } = useSWR(
-    `http://localhost:8000/api/vehicles/get-vehicle?id=${vehicleId}`,
-    fetcher,
-    {
-      revalidateOnFocus: false,
-    }
-  );
-
-  const isLoading = !data && !error;
+  serviceType,
+}: VehicleDetails): Promise<JSX.Element> => {
+  const { status, vehicle, message } = await getVehicle(vehicleId);
+  const isError = status === "error";
 
   return (
-    <div>
-      {isLoading ? (
-        <p>Loader...</p>
-      ) : error ? (
-        <p>Error: {error.message}</p>
+    <div className="w-full">
+      {isError ? (
+        <p>Error: {message}</p>
       ) : (
-        <VehiclesDetailsView vehicle={data?.vehicle} />
+        <VehiclesDetailsView vehicle={vehicle} serviceType={serviceType} />
       )}
     </div>
   );

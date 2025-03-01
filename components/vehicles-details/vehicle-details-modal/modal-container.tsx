@@ -6,11 +6,19 @@ import { useState } from "react";
 import { Option } from "@/components/tools/selects/select/select-container";
 import ModalView from "./modal-view";
 
-const ModalContainer = () => {
+interface ModalContainerProps {
+  action: () => void;
+}
+
+const ModalContainer = ({ action }: ModalContainerProps) => {
   const [selectedOption, setSelectedOption] = useState<string>("");
 
   const handleChangeOption = (option: Option | null) => {
     setSelectedOption(option?.value || "");
+  };
+
+  const handleUpdateHistory = () => {
+    action();
   };
 
   const selectedForm = options[selectedOption as keyof typeof options];
@@ -27,6 +35,7 @@ const ModalContainer = () => {
         key={selectedOption}
         formFields={selectedForm}
         selectedOption={selectedOption}
+        shouldUpdateHistory={handleUpdateHistory}
       />
     </div>
   );

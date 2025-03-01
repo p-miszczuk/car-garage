@@ -1,19 +1,22 @@
-import { useFetch } from "@/lib/hooks/useFetch";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ModalViewData } from "./modal-view";
 import { getField } from "@/components/tools/utils";
 import { useToast } from "@/lib/hooks/useToast";
+import { addVehicleHistoryItem } from "@/actions/vehicle-history";
 
 interface FormValues {
   [key: string]: string | number;
 }
 
-export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
+export const useModalView = ({
+  formFields,
+  selectedOption,
+  shouldUpdateHistory,
+}: ModalViewData) => {
   const pathname = usePathname();
   const vehicleId = pathname.split("/")[3];
-  const { fetchData } = useFetch();
   const { toastSuccess, toastError } = useToast();
   const methods = useForm<FormValues>();
 
@@ -105,14 +108,15 @@ export const useModalView = ({ formFields, selectedOption }: ModalViewData) => {
         });
       }
 
-      const { message } = await fetchData({
-        url: "vehicles/add-history",
-        method: "POST",
-        body: dataToSave,
-      });
-
-      toastSuccess(message);
-      methods.reset();
+      const { message, status } = await addVehicleHistoryItem(dataToSave);
+      const isError = status === "error";
+      if (isError) {
+        toastError(message);
+      } else {
+        toastSuccess(message);
+        methods.reset();
+        shouldUpdateHistory();
+      }
     } catch (error: unknown) {
       if (error instanceof Error) {
         toastError(error?.message || "Something went wrong");
