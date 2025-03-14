@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useToast } from "@/lib/hooks/useToast";
-import { addVehicle } from "@/actions/vehicles";
+import { useFetch } from "@/lib/hooks/useFetch";
 import FormNewCarView from "./form-new-car-view";
 import SubmitButton from "../auth-form/form-button";
 
@@ -18,6 +18,7 @@ export type FormValues = {
 const FormNewCarContainer = () => {
   const params = useParams();
   const { toastSuccess, toastError } = useToast();
+  const { fetchData } = useFetch();
   const {
     register,
     handleSubmit,
@@ -37,7 +38,18 @@ const FormNewCarContainer = () => {
       fuel: data.fuel,
     };
 
-    const { status, message } = await addVehicle(formData);
+    const resp = await fetchData({
+      url: "add-vehicle",
+      method: "POST",
+      body: formData,
+    });
+
+    if (!resp) {
+      toastError("Error adding vehicle");
+      return;
+    }
+
+    const { message, status } = resp || {};
     const isError = status === "error";
 
     if (isError) {

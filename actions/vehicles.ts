@@ -2,7 +2,6 @@
 
 import { authOptions } from "@/lib/authOptions";
 import prisma from "@/lib/prisma";
-import { Vehicle } from "@prisma/client";
 // @ts-ignore
 import { getServerSession } from "next-auth";
 import { UNAUTHORIZED_ERROR } from "./utils";
@@ -46,25 +45,6 @@ export async function deleteVehicle(id: string) {
     return {
       status: "success",
       message: "Vehicle deleted successfully",
-    };
-  });
-}
-
-export async function addVehicle(vehicle: Omit<Vehicle, "id" | "userId">) {
-  return handleError(async () => {
-    const session = await getServerSession(authOptions);
-
-    if (!session?.user?.id) {
-      return UNAUTHORIZED_ERROR;
-    }
-
-    await prisma.vehicle.create({
-      data: { ...vehicle, userId: session.user.id },
-    });
-
-    return {
-      status: "success",
-      message: "Vehicle added successfully",
     };
   });
 }
