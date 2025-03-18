@@ -2,6 +2,13 @@ import { render, screen } from "@testing-library/react";
 import VehicleDetailsMetadata from "@/components/vehicles-details/vehicle-details-metadata";
 
 describe("VehicleDetailsMetadata", () => {
+  jest.mock("next-auth/react", () => ({
+    useSession: jest.fn(() => ({
+      data: { user: { name: "Test User" } },
+      status: "authenticated",
+    })),
+  }));
+
   const defaultProps = {
     brand: "Toyota",
     model: "Corolla",

@@ -23,6 +23,13 @@ jest.mock("../../../actions/vehicle-history", () => ({
   removeVehicleHistoryItem: jest.fn(),
 }));
 
+jest.mock("next-auth/react", () => ({
+  useSession: jest.fn(() => ({
+    data: { user: { name: "Test User" } },
+    status: "authenticated",
+  })),
+}));
+
 describe("VehicleDetailsListContent", () => {
   const mockServiceData = [
     {
