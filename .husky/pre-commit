@@ -1,4 +1,7 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
 
+# Uruchomienie ESLint
 npx eslint . --max-warnings 0
+
+# Uruchomienie wszystkich testów
+npx jest
