@@ -208,7 +208,11 @@ describe("VehicleDetailsListContent", () => {
     ];
 
     render(
-      <VehicleDetailsListContent data={dataWithoutId} serviceType="service" />
+      <VehicleDetailsListContent
+        data={dataWithoutId}
+        serviceType="service"
+        key="service"
+      />
     );
 
     const deleteButton = screen.getAllByRole("button", { name: "Delete" })[0];
