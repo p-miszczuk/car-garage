@@ -220,7 +220,13 @@ describe("VehicleDetailsListContent", () => {
   });
 
   it("renders the correct number of columns based on serviceType", () => {
-    render(<VehicleDetailsListContent data={[]} serviceType="service" />);
+    render(
+      <VehicleDetailsListContent
+        data={[]}
+        serviceType="service"
+        key="service"
+      />
+    );
 
     // Number of columns for service + Delete column
     const expectedServiceColumns = historyFields.service.length + 1;
