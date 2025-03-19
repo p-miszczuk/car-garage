@@ -4,7 +4,7 @@ import EmptyMessage from "./index";
 
 describe("EmptyMessage component", () => {
   it("renders with default props", () => {
-    render(<EmptyMessage />);
+    render(<EmptyMessage text="Something went wrong. Please try again." />);
     const messageElement = screen.getByTestId("empty-message");
     expect(messageElement).toHaveClass("text-red-700");
     expect(messageElement).toHaveTextContent(
