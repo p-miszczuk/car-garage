@@ -7,7 +7,7 @@ interface Props {
 
 type ErrorMessageProps = Readonly<Props>;
 
-const EmptyMessage = ({ type, text }: ErrorMessageProps) => {
+const EmptyMessage = ({ type = "error", text }: ErrorMessageProps) => {
   return (
     <p
       className={classNames({
