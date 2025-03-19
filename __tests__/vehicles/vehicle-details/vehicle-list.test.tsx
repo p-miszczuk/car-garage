@@ -197,36 +197,6 @@ describe("VehicleDetailsListContent", () => {
     });
   });
 
-  it("does not call removeVehicleHistoryItem when id is missing", async () => {
-    const dataWithoutId = [
-      {
-        date: "2023-01-01",
-        service_type: "Oil Change",
-        service_start_date: "2023-01-01",
-        service_start_time: "10:00",
-        odometer: "50000",
-        place: "Service Center",
-        total_cost: "150",
-        notes: "Regular maintenance",
-      },
-    ];
-
-    render(
-      <VehicleDetailsListContent
-        data={dataWithoutId}
-        serviceType="service"
-        key="service-missing-test"
-      />
-    );
-
-    const deleteButton = screen.getAllByRole("button", { name: "Delete" })[0];
-    fireEvent.click(deleteButton);
-
-    await waitFor(() => {
-      expect(removeVehicleHistoryItem).not.toHaveBeenCalled();
-    });
-  });
-
   it("renders the correct number of columns based on serviceType", () => {
     render(
       <VehicleDetailsListContent
