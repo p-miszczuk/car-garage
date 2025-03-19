@@ -178,7 +178,11 @@ describe("VehicleDetailsListContent", () => {
     });
 
     render(
-      <VehicleDetailsListContent data={mockServiceData} serviceType="service" />
+      <VehicleDetailsListContent
+        data={mockServiceData}
+        serviceType="service"
+        key="service-delete-test"
+      />
     );
 
     const deleteButton = screen.getAllByRole("button", { name: "Delete" })[0];
@@ -211,7 +215,7 @@ describe("VehicleDetailsListContent", () => {
       <VehicleDetailsListContent
         data={dataWithoutId}
         serviceType="service"
-        key="service"
+        key="service-missing-test"
       />
     );
 
@@ -241,7 +245,9 @@ describe("VehicleDetailsListContent", () => {
     cleanup();
 
     // Render for route
-    render(<VehicleDetailsListContent data={[]} serviceType="route" />);
+    render(
+      <VehicleDetailsListContent data={[]} serviceType="route" key="route" />
+    );
 
     // Number of columns for route + Delete column
     const expectedRouteColumns = historyFields.route.length + 1;
