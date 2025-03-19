@@ -7,7 +7,10 @@ interface Props {
 
 type ErrorMessageProps = Readonly<Props>;
 
-const EmptyMessage = ({ type, text }: ErrorMessageProps) => {
+const EmptyMessage = ({
+  type = "error",
+  text = "Something went wrong. Please try again.",
+}: ErrorMessageProps) => {
   return (
     <p
       className={classNames({
@@ -19,11 +22,6 @@ const EmptyMessage = ({ type, text }: ErrorMessageProps) => {
       {text}
     </p>
   );
-};
-
-EmptyMessage.defaultProps = {
-  type: "error",
-  text: "Something went wrong. Please try again.",
 };
 
 export default EmptyMessage;

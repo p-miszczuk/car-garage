@@ -9,6 +9,7 @@ type Props = {
   text: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  testId?: string;
 };
 
 type ButtonProps = Readonly<Props>;
@@ -20,6 +21,7 @@ const Button = ({
   text,
   type = "button",
   disabled = false,
+  testId = "button",
 }: ButtonProps) => {
   const classNames = classnames("", {
     "font-bold": bold,
@@ -31,7 +33,7 @@ const Button = ({
       type={type}
       onClick={onClick}
       className={classNames}
-      data-testid="button"
+      data-testid={testId}
       disabled={disabled}
     >
       {text}

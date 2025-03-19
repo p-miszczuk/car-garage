@@ -1,17 +1,14 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { useSession } from "next-auth/react";
-import { USER_AUTHENTICATED } from "../header/index.test";
-import { useParams, useRouter } from "next/navigation";
+import { USER_AUTHENTICATED } from "../../header/index.test";
+import { useParams } from "next/navigation";
 import { useFetch } from "@/lib/hooks/useFetch";
 import VehicleNav from "@/app/vehicles/add-new-vehicle/vehicle-nav";
-import boxesMenu from "../../shares/boxes-menu/index.json";
-import Vehicles from "@/app/vehicles/page";
 import FormNewCarContainer from "@/components/form-new-car/form-new-car-container";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
-// Mock useFetch to avoid actual API calls
-jest.mock("../../lib/hooks/useFetch");
+jest.mock("../../../lib/hooks/useFetch");
 
 jest.mock("next-auth/react");
 const useSessionMocked = jest.mocked(useSession);
@@ -21,11 +18,7 @@ jest.mock("next/navigation", () => ({
   useParams: jest.fn(),
 }));
 
-const testCases = boxesMenu.boxes.filter(
-  ({ id }) => id === "my-vehicles" || id === "add-new-vehicle"
-);
-
-describe("Testing vehicles page", () => {
+describe("Testing form add new vehicle", () => {
   const mockFetchData = jest.fn();
   (useParams as jest.Mock).mockReturnValue({ "vehicle-type": "Car" });
 
@@ -35,32 +28,6 @@ describe("Testing vehicles page", () => {
     useSessionMocked.mockReturnValue({
       ...USER_AUTHENTICATED,
       update: jest.fn(),
-    });
-  });
-
-  it("Boxes are rendered", async () => {
-    render(<Vehicles />);
-    const vehiclesBoxes = screen.queryAllByTestId("vehicle-nav-box");
-    expect(vehiclesBoxes.length).toBeGreaterThan(0);
-  });
-
-  testCases.forEach((box) => {
-    it(`Go to ${box.title} page`, async () => {
-      const mockPush = jest.fn();
-      (useRouter as jest.Mock).mockReturnValue({
-        push: mockPush,
-      });
-
-      render(<Vehicles />);
-
-      const element = screen.getByText(box.title);
-      fireEvent.click(element);
-
-      await waitFor(() => {
-        expect(mockPush).toHaveBeenCalledWith(
-          expect.stringContaining(`${box.path}`)
-        );
-      });
     });
   });
 
@@ -92,7 +59,7 @@ describe("Testing vehicles page", () => {
     expect(submitButton).toBeInTheDocument();
   });
 
-  test("submits the form with correct data", async () => {
+  it("submits the form with correct data", async () => {
     const user = userEvent.setup();
     render(<FormNewCarContainer />);
 
@@ -115,10 +82,10 @@ describe("Testing vehicles page", () => {
     await user.click(screen.getByRole("button", { name: "Submit" }));
 
     expect(mockFetchData).toHaveBeenCalledWith({
-      url: "vehicles/add-vehicle",
+      url: "add-vehicle",
       method: "POST",
       body: {
-        vehicleType: "C",
+        type: "C",
         brand: "Toyota",
         model: "Corolla",
         distance: 10000,

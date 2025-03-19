@@ -20,7 +20,7 @@ interface VehicleDetailsViewProps {
   serviceType: ValidModelType;
 }
 
-const TABS = [
+export const TABS = [
   {
     label: "Route",
     value: "route",

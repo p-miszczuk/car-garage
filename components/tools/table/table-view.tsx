@@ -24,6 +24,7 @@ const TableView = ({
         onHeaderRow={() => ({
           className: "h-10",
         })}
+        data-testid="table"
       />
     </div>
   );
