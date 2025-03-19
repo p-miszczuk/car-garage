@@ -33,7 +33,7 @@ jest.mock("next-auth/react", () => ({
 describe("VehicleDetailsListContent", () => {
   const mockServiceData = [
     {
-      id: "1",
+      id: 1,
       date: "2023-01-02",
       service_type: "Oil Change",
       service_start_date: "2023-01-01",
@@ -44,7 +44,7 @@ describe("VehicleDetailsListContent", () => {
       notes: "Regular maintenance",
     },
     {
-      id: "2",
+      id: 2,
       date: "2023-02-16",
       service_type: "Brake Repair",
       service_start_date: "2023-02-15",
@@ -58,7 +58,7 @@ describe("VehicleDetailsListContent", () => {
 
   const mockRouteData = [
     {
-      id: "1",
+      id: 3,
       date: "2023-01-05",
       route_start: "Home",
       odometer_start: "50000",
