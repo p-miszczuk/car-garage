@@ -54,7 +54,7 @@ const VehiclesDetailsView = ({
 
   return (
     <div className="vehicles-details">
-      <VehicleDetailsMetadata {...rest} type={type} />
+      <VehicleDetailsMetadata {...rest} type={type} id={id} />
       <div className="vehicle-history flex flex-col border-t-1 pt-3">
         <h4 className="text-xl font-bold pb-5 text-center">Vehicle history</h4>
         <Tabs tabs={TABS} type="vehicle-details">

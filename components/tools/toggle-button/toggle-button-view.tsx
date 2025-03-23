@@ -37,7 +37,6 @@ const ToggleButtonView = ({
               onChange={() => {}}
             />
             <Button
-              text={item.label}
               onClick={handleButtonClick(item.value)}
               customClass={classNames(
                 "p-1 border rounded text-black w-[130px]",
@@ -46,7 +45,9 @@ const ToggleButtonView = ({
                   "text-white": isSelected,
                 }
               )}
-            />
+            >
+              {item.label}
+            </Button>
           </React.Fragment>
         );
       })}

@@ -6,19 +6,19 @@ type Props = {
   bold?: boolean;
   customClass?: string;
   onClick: (value?: any) => void;
-  text: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   testId?: string;
+  children?: React.ReactNode;
 };
 
 type ButtonProps = Readonly<Props>;
 
 const Button = ({
+  children,
   bold = false,
   customClass = "",
   onClick,
-  text,
   type = "button",
   disabled = false,
   testId = "button",
@@ -36,7 +36,7 @@ const Button = ({
       data-testid={testId}
       disabled={disabled}
     >
-      {text}
+      {children}
     </button>
   );
 };

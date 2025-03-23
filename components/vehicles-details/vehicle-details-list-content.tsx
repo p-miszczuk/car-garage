@@ -42,10 +42,11 @@ const VehicleDetailsListContent = ({
 
           return (
             <Button
-              text="Delete"
               customClass="py-2 px-4 border rounded-md"
               onClick={handleDeleteClick(record?.id)}
-            />
+            >
+              Delete
+            </Button>
           );
         },
       },

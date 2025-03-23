@@ -32,9 +32,10 @@ const VehicleDetailsNewItem = () => {
       <Button
         type="button"
         onClick={handleOpenModal}
-        text="Add new item"
         customClass="bg-green-600 p-1 border rounded text-white"
-      />
+      >
+        Add new item
+      </Button>
       {isModalOpen ? (
         <CustomModal
           onClose={handleCloseModal}

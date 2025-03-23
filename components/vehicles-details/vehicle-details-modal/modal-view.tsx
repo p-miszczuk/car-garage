@@ -19,11 +19,12 @@ const ModalView = (data: ModalViewData) => {
         {!!fields ? (
           <Button
             type="submit"
-            text="Add"
             customClass="bg-green-600 p-1 border rounded text-white min-w-[200px]"
             onClick={() => {}}
             disabled={methods.formState.isSubmitting}
-          />
+          >
+            Add
+          </Button>
         ) : null}
       </form>
     </FormProvider>
