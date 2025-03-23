@@ -11,12 +11,13 @@ interface TabsViewProps {
 const TabsView = ({ value, label, activeTab, setActiveTab }: TabsViewProps) => {
   return (
     <Button
-      text={label}
       onClick={() => setActiveTab(value)}
       customClass={classNames("p-1 border rounded text-black w-[130px]", {
         "bg-blue-600 text-white": value === activeTab,
       })}
-    />
+    >
+      {label}
+    </Button>
   );
 };
 

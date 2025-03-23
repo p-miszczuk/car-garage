@@ -39,11 +39,9 @@ const VehicleListView = ({ vehicles = [] }: VehicleListViewData) => {
         title: "",
         key: "open",
         render: (_: string, record: Vehicle) => (
-          <Button
-            onClick={handleOpen(record.id)}
-            text="Open"
-            testId="open-button"
-          />
+          <Button onClick={handleOpen(record.id)} testId="open-button">
+            Open
+          </Button>
         ),
       },
       {
@@ -52,9 +50,10 @@ const VehicleListView = ({ vehicles = [] }: VehicleListViewData) => {
         render: (_: string, record: Vehicle) => (
           <Button
             onClick={handleOpenConfirmModal(record.id)}
-            text="Delete"
             testId="delete-button"
-          />
+          >
+            Delete
+          </Button>
         ),
       },
     ],

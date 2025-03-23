@@ -69,3 +69,38 @@ export async function getVehicle(id: string) {
     };
   });
 }
+
+export async function updateVehicle(
+  id: string,
+  data: { type: string; value: string }
+) {
+  return handleError(async () => {
+    try {
+      const session = await getServerSession(authOptions);
+
+      if (!session?.user.id) {
+        return UNAUTHORIZED_ERROR;
+      }
+
+      await prisma.vehicle.update({
+        where: {
+          id,
+        },
+        data: {
+          [data.type]: Number(data.value) || data.value,
+        },
+      });
+
+      return {
+        status: "success",
+        message: "Vehicle updated successfully",
+      };
+    } catch (error: any) {
+      console.log(error);
+      return {
+        status: "error",
+        message: "Vehicle update failed",
+      };
+    }
+  });
+}

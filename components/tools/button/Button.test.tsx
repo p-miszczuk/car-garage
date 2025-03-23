@@ -8,28 +8,34 @@ describe("Button component", () => {
   const btnText = "Click me";
 
   it("renders with the correct text prop", () => {
-    render(<Button text={btnText} onClick={mockedBtnClick} />);
+    render(<Button onClick={mockedBtnClick}>{btnText}</Button>);
     const button = screen.getByTestId("button");
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent(btnText);
   });
 
   it("applies the bold class when bold prop is true", () => {
-    render(<Button text={btnText} onClick={mockedBtnClick} bold />);
+    render(
+      <Button onClick={mockedBtnClick} bold>
+        {btnText}
+      </Button>
+    );
     const button = screen.getByTestId("button");
     expect(button).toHaveClass("font-bold");
   });
 
   it("applies custom class prop when customClass prop includes value", () => {
     render(
-      <Button text={btnText} onClick={mockedBtnClick} customClass="w-full" />
+      <Button onClick={mockedBtnClick} customClass="w-full">
+        {btnText}
+      </Button>
     );
     const button = screen.getByTestId("button");
     expect(button).toHaveClass("w-full");
   });
 
   it("call onClick function when clicked", () => {
-    render(<Button text={btnText} onClick={mockedBtnClick} />);
+    render(<Button onClick={mockedBtnClick}>{btnText}</Button>);
     const button = screen.getByTestId("button");
     fireEvent.click(button);
     expect(mockedBtnClick).toHaveBeenCalledTimes(1);

@@ -3,14 +3,30 @@ import { UseFormRegister } from "react-hook-form";
 
 type InputView = {
   id: string;
-  register: UseFormRegister<any>;
   required?: boolean;
   type: string;
   isAuthForm?: boolean;
   placeholder?: string;
+  defaultValue?: string;
+  customClass?: string;
+  register?: UseFormRegister<any>;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type InputViewProps = Readonly<InputView>;
+
+const getDefaultInputData = (
+  defaultValue: string | undefined,
+  type: string
+) => {
+  if (type === "date") {
+    return new Date().toISOString().split("T")[0];
+  }
+  if (type === "time") {
+    return new Date().toISOString().split("T")[1].slice(0, 5);
+  }
+  return defaultValue;
+};
 
 const InputView = ({
   id,
@@ -19,27 +35,29 @@ const InputView = ({
   type = "text",
   isAuthForm = false,
   placeholder = "",
+  defaultValue,
+  onChange,
+  customClass,
 }: InputViewProps) => {
+  const defaultValueData = getDefaultInputData(defaultValue, type);
+
   return (
-    <div className="border shadow rounded">
-      <input
-        className="w-full text-black p-1"
-        data-testid={id}
-        type={type}
-        id={id}
-        placeholder={placeholder}
-        {...register(id, {
+    <input
+      className={`w-full text-black p-2 border border-gray-300 rounded-md ${customClass}`}
+      data-testid={id}
+      type={type}
+      id={id}
+      placeholder={placeholder}
+      onChange={onChange || undefined}
+      {...(!!register &&
+        register(id, {
           required: required ? `The ${id} field is required` : false,
           validate: validateField({ id, isAuthForm }),
-        })}
-        {...(type === "date" && {
-          defaultValue: new Date().toISOString().split("T")[0],
-        })}
-        {...(type === "time" && {
-          defaultValue: new Date().toISOString().split("T")[1].slice(0, 5),
-        })}
-      />
-    </div>
+        }))}
+      {...(defaultValueData && {
+        defaultValue: defaultValueData,
+      })}
+    />
   );
 };
 

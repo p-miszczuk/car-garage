@@ -25,7 +25,9 @@ const HeaderMenuView = ({ auth, path, text, type }: Props) => {
     <li className="flex">
       {isAuth === auth ? (
         type === "button" ? (
-          <Button onClick={handleClickButton} text={text} bold />
+          <Button onClick={handleClickButton} bold>
+            {text}
+          </Button>
         ) : (
           <Link href={path} className="font-bold">
             {text}
